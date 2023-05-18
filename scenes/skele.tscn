@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj2fq1kfjhfb4"]
+
+[ext_resource type="Texture2D" uid="uid://c10mtb6surh80" path="res://sprites/skelet_idle_anim_f0.png" id="1_vu3bg"]
+[ext_resource type="Script" path="res://scripts/skele.gd" id="2_n0l1d"]
+
+[node name="skele" type="Node2D"]
+position = Vector2(3.8147e-06, 3.8147e-06)
+scale = Vector2(10.625, 10.625)
+script = ExtResource("2_n0l1d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vu3bg")
