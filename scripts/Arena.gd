@@ -26,8 +26,16 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var counter: float = 0.0;
+
 func _process(delta):
+	# Slow down!
+	counter += delta
+	
+	if (counter < 1.0):
+		return
+	counter = 0.0
+	
 	# Evaluate Combat State and turn order
 	# Skip if not in Combat
 	if (current_state == CombatState.INACTIVE):

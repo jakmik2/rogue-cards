@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://gaerkj3v203s"]
+
+[ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_ld6wt"]
+[ext_resource type="Texture2D" uid="uid://bnwxo6157gfbd" path="res://sprites/goblin.png" id="2_1njqm"]
+
+[node name="PlayerCharacter" type="Node2D"]
+script = ExtResource("1_ld6wt")
+health = 150
+armor_class = 13
+damage = 7
+speed = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, -89)
+texture = ExtResource("2_1njqm")
