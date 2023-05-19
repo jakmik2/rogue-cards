@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://vyng0t4bmiqh"]
+
+[ext_resource type="PackedScene" uid="uid://cj2fq1kfjhfb4" path="res://scenes/skele.tscn" id="1_6ju06"]
+[ext_resource type="Script" path="res://scripts/Arena.gd" id="1_8l2me"]
+[ext_resource type="PackedScene" uid="uid://gaerkj3v203s" path="res://scenes/player_character.tscn" id="2_j7410"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_8l2me")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_j7410")]
+position = Vector2(232, 279)
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(736, 276)
+
+[node name="skele" parent="Enemies" instance=ExtResource("1_6ju06")]
+position = Vector2(-5.923, 4.46)
+health = 50
+armor_class = 5
+damage = 5
+speed = 2
+
+[node name="skele2" parent="Enemies" instance=ExtResource("1_6ju06")]
+position = Vector2(111, 30)
+health = 50
+armor_class = 5
+damage = 5
+speed = 2
+
+[node name="skele3" parent="Enemies" instance=ExtResource("1_6ju06")]
+position = Vector2(-123, 18)
+health = 50
+armor_class = 5
+damage = 5
+speed = 2
