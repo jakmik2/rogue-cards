@@ -8,7 +8,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func attempt_attack() -> int:
 	print("I'm a nasty lil'goblin!")
-	return super.attempt_attack()
+	return await super.attempt_attack()
 
 func roll_dmg(d_size: int = 12):
 	return super.roll_dmg(d_size)

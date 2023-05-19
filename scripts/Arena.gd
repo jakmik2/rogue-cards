@@ -14,11 +14,13 @@ var player_character: PlayerCharacter = $PlayerCharacter
 
 # Enums
 enum CombatState {ACTIVE, INACTIVE}
+enum Round {ACTIVE, INACTIVE}
 
 # Properties
 var combat_order = []
 var current_state = CombatState.ACTIVE
 var current_turn = 0
+var round_tracker = Round.INACTIVE
 
 # Utils
 var rng = RandomNumberGenerator.new()
@@ -28,20 +30,20 @@ func _ready():
 
 var counter: float = 0.0;
 
-func _process(delta):
-	# Slow down!
-	counter += delta
-	
-	if (counter < 1.0):
-		return
-	counter = 0.0
-	
+func _process(_delta):
 	# Evaluate Combat State and turn order
-	# Skip if not in Combat
-	if (current_state == CombatState.INACTIVE):
+	# Skip if not in Combat or if actively resolving a round
+	if (current_state == CombatState.INACTIVE || round_tracker == Round.ACTIVE):
 		pass
-	# Begin Combat
-	elif (current_state == CombatState.ACTIVE && combat_order.is_empty()):
+	# Run Round
+	else:
+		combat_round()
+
+func combat_round():
+	round_tracker = Round.ACTIVE
+	
+	# Fresh combat
+	if (combat_order.is_empty()):
 		# Populate Combat order (Probably a memory nightmare right here)
 		combat_order = enemies.duplicate()
 		combat_order.push_back(player_character)
@@ -62,18 +64,21 @@ func _process(delta):
 			target = enemies[enemy_idx]
 			
 		# Evaluate attack
-		var attack_roll = source.attempt_attack()
+		var attack_roll = await source.attempt_attack()
 		var damage = source.roll_dmg()
-		if (target.evaluate_attack(attack_roll, damage)):
+		var attack_result = await target.evaluate_attack(attack_roll, damage)
+		if (attack_result):
 			print("Whamo Bamo! %s successfully struck %s for %s, reducing %s to %s" % [source, target, damage, target, target.health])
 			if (target.health <= 0 && target == player_character):
 				print("Game Over! You lose!")
 				current_state = CombatState.INACTIVE
+				player_character.kill()
 			elif (target.health <= 0 && source == player_character):
 				print("Got One!")
 				# Remove Enemy from list
 				enemies.pop_at(enemy_idx)
 				combat_order.pop_at(combat_order.find(target))
+				target.kill()
 			
 			# Check if all combatants have been defeated
 			if (enemies.is_empty()):
@@ -83,5 +88,4 @@ func _process(delta):
 			print("Big miss from %s" % source)
 		# Move To Next 
 		current_turn = (current_turn + 1) % combat_order.size()
-		
-	await(get_tree().create_timer(1.0).timeout)
+	round_tracker = Round.INACTIVE
