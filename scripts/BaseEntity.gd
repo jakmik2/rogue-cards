@@ -32,9 +32,12 @@ func kill() -> void:
 	status = LifeStatus.DEAD
 	animation_player.play('BaseEntityAnims/death')
 	if !self.is_player:
+		
 		print("LOOT!! EHEHEHEHEHEHEHHEHEE!!!!")
+		
 		# roll d20 to see what drops
 		var loot_roll = randi_range(1,20)
+		
 		# categorize loot_roll into appropriate category
 		if loot_roll <= 11:
 			loot_roll = 11
@@ -42,9 +45,12 @@ func kill() -> void:
 			loot_roll = 15
 		elif loot_roll <= 19:
 			loot_roll = 19
-		# loot notification
+		
+		# loot determination and notification
 		var lootie_tootie = self.loot[loot_roll] + str(self.loot_tier)
 		print(lootie_tootie + " loot")
+		
+		# if nothing drops, nothing should drop
 		if lootie_tootie[0] != 'N':
 			spawn_loot(lootie_tootie)
 
