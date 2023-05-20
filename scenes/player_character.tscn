@@ -1,9 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://gaerkj3v203s"]
+[gd_scene load_steps=6 format=3 uid="uid://ci4oxbxai3tll"]
 
 [ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_ld6wt"]
 [ext_resource type="Texture2D" uid="uid://bnwxo6157gfbd" path="res://sprites/goblin.png" id="2_1njqm"]
+[ext_resource type="AnimationLibrary" uid="uid://4kifbonvdpfq" path="res://animations/BaseEntityAnims.res" id="3_uyyt6"]
+
+[sub_resource type="Animation" id="Animation_qgp2n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -179)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02xe6"]
+_data = {
+"RESET": SubResource("Animation_qgp2n")
+}
 
 [node name="PlayerCharacter" type="Node2D"]
+position = Vector2(-1, -1)
 script = ExtResource("1_ld6wt")
 health = 150
 armor_class = 13
@@ -11,5 +45,14 @@ damage = 7
 speed = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-5, -89)
+position = Vector2(-7, -179)
 texture = ExtResource("2_1njqm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_02xe6"),
+"BaseEntityAnims": ExtResource("3_uyyt6")
+}
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(-14, -268)
