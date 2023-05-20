@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ci4oxbxai3tll"]
 
-[ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_ld6wt"]
+[ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_1ycvn"]
 [ext_resource type="Texture2D" uid="uid://bnwxo6157gfbd" path="res://sprites/goblin.png" id="2_1njqm"]
 [ext_resource type="AnimationLibrary" uid="uid://4kifbonvdpfq" path="res://animations/BaseEntityAnims.res" id="3_uyyt6"]
 
@@ -38,11 +38,7 @@ _data = {
 
 [node name="PlayerCharacter" type="Node2D"]
 position = Vector2(-1, -1)
-script = ExtResource("1_ld6wt")
-health = 150
-armor_class = 13
-damage = 7
-speed = 7
+script = ExtResource("1_1ycvn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7, -179)
