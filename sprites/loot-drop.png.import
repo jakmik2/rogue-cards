@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cybo0kno58ky4"
-path="res://.godot/imported/playerconcept.png-04a5574f591257fe3d1a100a9719a9b6.ctex"
+uid="uid://bw06vccb7n5m6"
+path="res://.godot/imported/loot-drop.png-ff6c4005a60df85fbb8e6cc8680ec530.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/playerconcept.png"
-dest_files=["res://.godot/imported/playerconcept.png-04a5574f591257fe3d1a100a9719a9b6.ctex"]
+source_file="res://sprites/loot-drop.png"
+dest_files=["res://.godot/imported/loot-drop.png-ff6c4005a60df85fbb8e6cc8680ec530.ctex"]
 
 [params]
 

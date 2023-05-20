@@ -7,6 +7,7 @@ class_name BaseEntity extends Node
 @export var status: LifeStatus
 @export var damage = 10
 @export var speed = 5
+@export var scene = preload("res://scenes/Loot.tscn")
 
 # Enums
 enum LifeStatus {ALIVE, DEAD}
@@ -42,7 +43,13 @@ func kill() -> void:
 		elif loot_roll <= 19:
 			loot_roll = 19
 		# loot notification
-		print(self.loot[loot_roll] + str(self.loot_tier) + " loot")
+		var lootie_tootie = self.loot[loot_roll] + str(self.loot_tier)
+		print(lootie_tootie + " loot")
+		spawn_loot(lootie_tootie)
+
+func spawn_loot(loot_id):
+	var new_loot = scene.instantiate()
+	add_child(new_loot)
 
 func attempt_attack() -> int:
 	# Play Attack Animation
