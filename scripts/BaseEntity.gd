@@ -45,7 +45,8 @@ func kill() -> void:
 		# loot notification
 		var lootie_tootie = self.loot[loot_roll] + str(self.loot_tier)
 		print(lootie_tootie + " loot")
-		spawn_loot(lootie_tootie)
+		if lootie_tootie[0] != 'N':
+			spawn_loot(lootie_tootie)
 
 func spawn_loot(loot_id):
 	var new_loot = scene.instantiate()
