@@ -32,6 +32,17 @@ func kill() -> void:
 	animation_player.play('BaseEntityAnims/death')
 	if !self.is_player:
 		print("LOOT!! EHEHEHEHEHEHEHHEHEE!!!!")
+		# roll d20 to see what drops
+		var loot_roll = randi_range(1,20)
+		# categorize loot_roll into appropriate category
+		if loot_roll <= 11:
+			loot_roll = 11
+		elif loot_roll <= 15:
+			loot_roll = 15
+		elif loot_roll <= 19:
+			loot_roll = 19
+		# loot notification
+		print(self.loot[loot_roll] + str(self.loot_tier) + " loot")
 
 func attempt_attack() -> int:
 	# Play Attack Animation

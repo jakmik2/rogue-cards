@@ -12,12 +12,16 @@ scale = Vector2(1, 1.01909)
 
 [node name="skele" parent="Enemies" instance=ExtResource("1_6ju06")]
 position = Vector2(831, 308.118)
+health = 10
 
 [node name="skele2" parent="Enemies" instance=ExtResource("1_6ju06")]
 position = Vector2(573, 355.219)
+health = 10
 
 [node name="skele3" parent="Enemies" instance=ExtResource("1_6ju06")]
 position = Vector2(711, 444.514)
+health = 10
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_j7410")]
 position = Vector2(222, 406)
+health = 200
