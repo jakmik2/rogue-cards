@@ -30,6 +30,8 @@ func get_speed() -> int:
 func kill() -> void:
 	status = LifeStatus.DEAD
 	animation_player.play('BaseEntityAnims/death')
+	if !self.is_player:
+		print("LOOT!! EHEHEHEHEHEHEHHEHEE!!!!")
 
 func attempt_attack() -> int:
 	# Play Attack Animation

@@ -1,5 +1,8 @@
 extends BaseEntity
 
+@export var is_player = false	# Not a player character
+@export var tier = 0			# Loot Tier for skele
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -9,7 +12,7 @@ func _process(delta):
 	pass
 
 func attempt_attack():
-	print("I Hate Goblins!")
+	print("Goblin Scum!")
 	return await super.attempt_attack()
 	
 func roll_dmg(d_size: int = 8):
