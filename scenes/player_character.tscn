@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci4oxbxai3tll"]
+[gd_scene load_steps=7 format=3 uid="uid://dg6opfstej5al"]
 
 [ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_1ycvn"]
 [ext_resource type="Texture2D" uid="uid://bnwxo6157gfbd" path="res://sprites/goblin.png" id="2_1njqm"]
 [ext_resource type="AnimationLibrary" uid="uid://4kifbonvdpfq" path="res://animations/BaseEntityAnims.res" id="3_uyyt6"]
+[ext_resource type="PackedScene" uid="uid://blbq4t3k2drou" path="res://scenes/UI/HealthDisplay.tscn" id="4_j1jtl"]
 
 [sub_resource type="Animation" id="Animation_qgp2n"]
 length = 0.001
@@ -39,6 +40,9 @@ _data = {
 [node name="PlayerCharacter" type="Node2D"]
 position = Vector2(-1, -1)
 script = ExtResource("1_1ycvn")
+health = 50
+damage = 1
+speed = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7, -179)
@@ -52,3 +56,6 @@ libraries = {
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(-14, -268)
+
+[node name="HealthDisplay" parent="." instance=ExtResource("4_j1jtl")]
+position = Vector2(39, -15)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://146ubeedod1y"]
 
-[ext_resource type="PackedScene" uid="uid://cj2fq1kfjhfb4" path="res://scenes/skele.tscn" id="1_6ju06"]
+[ext_resource type="PackedScene" uid="uid://cjukxsdcdjk47" path="res://scenes/skele.tscn" id="1_6ju06"]
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="1_8l2me"]
-[ext_resource type="PackedScene" uid="uid://ci4oxbxai3tll" path="res://scenes/player_character.tscn" id="2_j7410"]
+[ext_resource type="PackedScene" uid="uid://dg6opfstej5al" path="res://scenes/player_character.tscn" id="2_j7410"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8l2me")
@@ -11,13 +11,13 @@ script = ExtResource("1_8l2me")
 scale = Vector2(1, 1.01909)
 
 [node name="skele" parent="Enemies" instance=ExtResource("1_6ju06")]
-position = Vector2(831, 308.118)
+position = Vector2(755, 249.242)
 
 [node name="skele2" parent="Enemies" instance=ExtResource("1_6ju06")]
-position = Vector2(573, 355.219)
+position = Vector2(550, 254.148)
 
 [node name="skele3" parent="Enemies" instance=ExtResource("1_6ju06")]
-position = Vector2(711, 444.514)
+position = Vector2(667, 453.346)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_j7410")]
 position = Vector2(222, 406)

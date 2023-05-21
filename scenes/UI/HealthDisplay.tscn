@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://blbq4t3k2drou"]
+
+[ext_resource type="Script" path="res://scripts/health_display.gd" id="1_8jw8s"]
+[ext_resource type="Texture2D" uid="uid://kry17oyrjevu" path="res://sprites/heart_full_32x32.png" id="1_brohe"]
+
+[node name="HealthDisplay" type="Node2D"]
+script = ExtResource("1_8jw8s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 0)
+scale = Vector2(1.82812, 1.85937)
+texture = ExtResource("1_brohe")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -15.0
+offset_right = 23.0
+offset_bottom = 11.0
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
