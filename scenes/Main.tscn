@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqivgqmx1twp3"]
+[gd_scene load_steps=5 format=3 uid="uid://bqivgqmx1twp3"]
 
 [ext_resource type="PackedScene" uid="uid://cjukxsdcdjk47" path="res://scenes/skele.tscn" id="1_6ju06"]
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="1_8l2me"]
 [ext_resource type="PackedScene" uid="uid://dg6opfstej5al" path="res://scenes/PlayerCharacter.tscn" id="2_j7410"]
+[ext_resource type="PackedScene" uid="uid://cpnxkmx8e38ey" path="res://scenes/UI/Inventory.tscn" id="4_5f2al"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8l2me")
@@ -25,3 +26,7 @@ health = 10
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_j7410")]
 position = Vector2(222, 406)
 health = 200
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="UI" instance=ExtResource("4_5f2al")]

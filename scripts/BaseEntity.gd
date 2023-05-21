@@ -57,6 +57,7 @@ func kill() -> void:
 
 func spawn_loot(loot_id):
 	var new_loot = scene.instantiate()
+	new_loot.loot_code = loot_id
 	add_child(new_loot)
 
 func attempt_attack() -> int:
