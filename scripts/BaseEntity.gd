@@ -3,7 +3,7 @@ class_name BaseEntity extends Node
 # Properties
 @export_group("Properties")
 @export var health = 100
-@export var armor_class = 10
+@export var armor_class = 0
 @export var status: LifeStatus
 @export var damage = 10
 @export var speed = 5
@@ -15,6 +15,7 @@ enum LifeStatus {ALIVE, DEAD}
 # Util
 var rng = RandomNumberGenerator.new()
 var damage_number_pool: Array[DamageNumber] = []
+var inverted = false
 
 # Nodes
 @onready

@@ -31,13 +31,15 @@ func _ready():
 var counter: float = 0.0;
 
 func _process(_delta):
+	counter += _delta
 	# Evaluate Combat State and turn order
 	# Skip if not in Combat or if actively resolving a round
 	if (current_state == CombatState.INACTIVE || round_tracker == Round.ACTIVE):
 		pass
 	# Run Round
-	else:
+	elif (counter > 0):
 		combat_round()
+		counter = 0
 
 func combat_round():
 	round_tracker = Round.ACTIVE
