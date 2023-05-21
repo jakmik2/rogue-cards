@@ -37,7 +37,7 @@ func _process(_delta):
 	if (current_state == CombatState.INACTIVE || round_tracker == Round.ACTIVE):
 		pass
 	# Run Round
-	elif (counter > 1):
+	elif (counter > 0):
 		combat_round()
 		counter = 0
 

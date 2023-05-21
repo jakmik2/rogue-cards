@@ -9,7 +9,7 @@ func attempt_attack():
 	print("I Hate Goblins!")
 	return await super.attempt_attack()
 	
-func roll_dmg(d_size: int = 8):
+func roll_dmg(d_size: int = 6):
 	return super.roll_dmg(d_size)
 
 func evaluate_attack(roll, dmg, invert = false) -> bool:

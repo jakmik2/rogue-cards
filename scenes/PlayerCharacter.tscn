@@ -40,8 +40,8 @@ _data = {
 [node name="PlayerCharacter" type="Node2D"]
 position = Vector2(-1, -1)
 script = ExtResource("1_1ycvn")
-health = 50
-damage = 1
+health = 15
+damage = 3
 speed = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -59,3 +59,4 @@ position = Vector2(-14, -268)
 
 [node name="HealthDisplay" parent="." instance=ExtResource("4_j1jtl")]
 position = Vector2(39, -15)
+scale_modifier = 2
