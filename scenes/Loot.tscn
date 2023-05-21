@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2omrff38u5af"]
+[gd_scene load_steps=4 format=3 uid="uid://c2omrff38u5af"]
 
 [ext_resource type="Texture2D" uid="uid://bw06vccb7n5m6" path="res://sprites/loot-drop.png" id="1_0so0q"]
+[ext_resource type="Script" path="res://scenes/Loot.gd" id="1_f5i0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8idy1"]
+size = Vector2(140, 160)
 
 [node name="Loot" type="Node2D"]
+script = ExtResource("1_f5i0i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0so0q")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8idy1")
