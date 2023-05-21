@@ -1,7 +1,6 @@
 class_name PlayerCharacter extends BaseEntity
 
 # Used to determine if the player character is affected
-@export var is_player = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
