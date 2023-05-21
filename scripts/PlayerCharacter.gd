@@ -1,5 +1,8 @@
 class_name PlayerCharacter extends BaseEntity
 
+# Used to determine if the player character is affected
+@export var is_player = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -7,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func attempt_attack() -> int:
-	print("I'm a nasty lil'goblin!")
+	print("YEEHEEHEE I'M A NASTY LIL'GOBLIN!")
 	return await super.attempt_attack()
 
 func roll_dmg(d_size: int = 12):
