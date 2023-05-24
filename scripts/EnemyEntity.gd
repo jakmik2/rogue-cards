@@ -2,8 +2,8 @@ class_name EnemyEntity extends BaseEntity
 
 @export var loot_tier = randi_range(0,2)	# Loot Tier for skele
 
-@onready 
-var lootPrefab = preload("res://scenes/Loot.tscn")
+@onready
+var lootManager: LootManager = get_parent() as LootManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,9 +15,7 @@ func _process(delta):
 
 func kill():
 	super.kill()
-	var loot: Loot = lootPrefab.instantiate()
-	var loot_status = loot.spawn(loot_tier)
-	if (loot_status):
+	var loot = lootManager.spawn_loot(loot_tier)
+	if (loot != null):
 		add_child(loot)
-	else:
-		loot.queue_free()
+		print("Spawned " + loot.loot_tag)

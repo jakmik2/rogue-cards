@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://3osdmhu412je"]
+
+[ext_resource type="Script" path="res://scripts/Deck.gd" id="1_q44bn"]
+[ext_resource type="Texture2D" uid="uid://bbsx8dgnp6ipk" path="res://sprites/backofcards.jpg" id="2_yh3gh"]
+[ext_resource type="PackedScene" uid="uid://7q4yr7y7im0u" path="res://scenes/utils/clickable_rect.tscn" id="3_sjv6u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x03f2"]
+size = Vector2(141, 198)
+
+[node name="Deck" type="Node2D"]
+script = ExtResource("1_q44bn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_yh3gh")
+
+[node name="ClickableBox" parent="." instance=ExtResource("3_sjv6u")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ClickableBox"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_x03f2")
