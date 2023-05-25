@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bklobs5p50tvc"]
+
+[ext_resource type="Texture2D" uid="uid://bw06vccb7n5m6" path="res://sprites/loot-drop.png" id="1_0so0q"]
+[ext_resource type="Script" path="res://scripts/Loot/BaseLoot.gd" id="1_sl7e8"]
+[ext_resource type="PackedScene" uid="uid://7q4yr7y7im0u" path="res://scenes/utils/clickable_rect.tscn" id="3_ti67w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk6e8"]
+size = Vector2(133, 152)
+
+[node name="Loot" type="Node2D"]
+script = ExtResource("1_sl7e8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0so0q")
+
+[node name="ClickableBox" parent="." instance=ExtResource("3_ti67w")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableBox"]
+shape = SubResource("RectangleShape2D_uk6e8")

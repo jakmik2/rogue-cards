@@ -1,27 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqivgqmx1twp3"]
+[gd_scene load_steps=5 format=3 uid="uid://bqivgqmx1twp3"]
 
-[ext_resource type="PackedScene" uid="uid://cjukxsdcdjk47" path="res://scenes/skele.tscn" id="1_6ju06"]
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="1_8l2me"]
+[ext_resource type="Script" path="res://scripts/LootManager.gd" id="2_c87ke"]
 [ext_resource type="PackedScene" uid="uid://dg6opfstej5al" path="res://scenes/PlayerCharacter.tscn" id="2_j7410"]
+[ext_resource type="PackedScene" uid="uid://3osdmhu412je" path="res://scenes/Deck.tscn" id="4_63nuo"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8l2me")
 
 [node name="Enemies" type="Node2D" parent="."]
+position = Vector2(708, 288)
 scale = Vector2(1, 1.01909)
-
-[node name="skele" parent="Enemies" instance=ExtResource("1_6ju06")]
-position = Vector2(831, 308.118)
-health = 10
-
-[node name="skele2" parent="Enemies" instance=ExtResource("1_6ju06")]
-position = Vector2(573, 355.219)
-health = 10
-
-[node name="skele3" parent="Enemies" instance=ExtResource("1_6ju06")]
-position = Vector2(711, 444.514)
-health = 10
+script = ExtResource("2_c87ke")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_j7410")]
 position = Vector2(222, 406)
 health = 200
+
+[node name="Deck" parent="." instance=ExtResource("4_63nuo")]
+position = Vector2(365, 515)

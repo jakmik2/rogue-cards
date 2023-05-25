@@ -6,7 +6,6 @@ class_name PlayerCharacter extends BaseEntity
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func attempt_attack() -> int:
 	print("YEEHEEHEE I'M A NASTY LIL'GOBLIN!")

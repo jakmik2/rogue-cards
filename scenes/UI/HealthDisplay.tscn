@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://blbq4t3k2drou"]
 
-[ext_resource type="Script" path="res://scripts/health_display.gd" id="1_8jw8s"]
 [ext_resource type="Texture2D" uid="uid://kry17oyrjevu" path="res://sprites/heart_full_32x32.png" id="1_brohe"]
+[ext_resource type="Script" path="res://scripts/HealthDisplay.gd" id="1_t6imj"]
 
 [node name="HealthDisplay" type="Node2D"]
-script = ExtResource("1_8jw8s")
+script = ExtResource("1_t6imj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
