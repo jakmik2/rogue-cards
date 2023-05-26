@@ -7,11 +7,13 @@ var enemies = get_node('/root/Main/Enemies')
 @onready
 var discard: Array[BaseCard] = []
 
-var cards: Array[BaseCard]
+@onready
+var cards: Array[BaseCard] = []
 
 @onready
 var can_draw = true
 
+@onready
 var mobs: Array
 
 # Spawn Positions
@@ -24,7 +26,7 @@ var card_temp = preload('res://scenes/loot/cards/BaseCard.tscn')
 
 func _ready():
 	var card = card_temp.instantiate()
-	cards = [card]
+	cards.push_back(card)
 
 func push_card(card: BaseCard):
 	print("Pushing " + card.card_name + " successfully")
@@ -34,6 +36,7 @@ func draw():
 	if can_draw:
 		print("Drawing from deck")
 		var card_drawn: BaseCard = cards.pop_front()
+		print(card_drawn)
 		mobs = card_drawn.spawn_mobs()
 		# Add spawn functionality here
 		discard.push_front(card_drawn)
