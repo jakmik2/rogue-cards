@@ -1,12 +1,19 @@
 class_name BaseEntity extends Node
 
+# Nodes
+@onready var animation_player = $AnimationPlayer
+@onready var damage_number_template = preload("res://scenes/UI/DamageDisplay.tscn")
+
 # Properties
-@export_group("Properties")
-@export var health = 100
-@export var armor_class = 0
-@export var status: LifeStatus
-@export var damage = 10
-@export var speed = 5
+var health
+var armor_class
+var damage
+var speed
+var crit_chance
+var crit_damage
+
+# Status
+var status: LifeStatus
 
 # Enums
 enum LifeStatus {ALIVE, DEAD}
@@ -16,22 +23,25 @@ var rng = RandomNumberGenerator.new()
 var damage_number_pool: Array[DamageNumber] = []
 var inverted = false
 
-# Nodes
-@onready
-var animation_player = $AnimationPlayer as AnimationPlayer
-@onready
-var damage_number_template = preload("res://scenes/DamageDisplay.tscn")
 
 func _ready():
 	animation_player.play('BaseEntityAnims/idle')
 
+func get_stats(entity_name) -> void:
+	var entity_stats = Global.stat_lookup[entity_name]
+	health = entity_stats["health"]
+	armor_class = entity_stats["armor_class"]
+	damage = entity_stats["damage"]
+	speed = entity_stats["speed"]
+	crit_chance = entity_stats["crit_chance"]
+	crit_damage = entity_stats["crit_damage"]
+
 func get_speed() -> int:
-	return rng.randi_range(1, 20) + speed
+	return rng.randi_range(-1, 1) + speed
 
 func kill() -> void:
 	status = LifeStatus.DEAD
 	animation_player.play('BaseEntityAnims/death')
-
 
 func attempt_attack() -> int:
 	# Play Attack Animation
@@ -39,10 +49,10 @@ func attempt_attack() -> int:
 	await animation_player.animation_finished
 	animation_player.play('BaseEntityAnims/idle')
 	# Make an Attack roll
-	return rng.randi_range(1, 20)
+	return rng.randi_range(1, damage)
 
-func roll_dmg(d_size: int = 1) -> int:
-	return rng.randi_range(1, d_size) + damage
+func roll_dmg() -> int:
+	return damage if randi_range(0,100) > crit_chance else crit_damage
 
 func evaluate_attack(roll, dmg, invert = false) -> bool:
 	# Evaluate Attack roll

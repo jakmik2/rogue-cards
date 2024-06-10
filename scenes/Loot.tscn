@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dc7rp7wxhjss0"]
 
-[ext_resource type="Texture2D" uid="uid://bw06vccb7n5m6" path="res://sprites/loot-drop.png" id="1_0so0q"]
 [ext_resource type="Script" path="res://scripts/Loot.gd" id="1_58na1"]
+[ext_resource type="Texture2D" uid="uid://i2qrdraonycb" path="res://sprites/drops/blank-drop.png" id="2_ctvhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8idy1"]
 size = Vector2(140, 160)
@@ -10,7 +10,8 @@ size = Vector2(140, 160)
 script = ExtResource("1_58na1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0so0q")
+scale = Vector2(10, 10)
+texture = ExtResource("2_ctvhm")
 
 [node name="Area2D" type="Area2D" parent="."]
 

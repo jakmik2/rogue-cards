@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjukxsdcdjk47"]
 
+[ext_resource type="Script" path="res://scripts/Mob.gd" id="1_my6js"]
 [ext_resource type="Texture2D" uid="uid://c10mtb6surh80" path="res://sprites/skelet_idle_anim_f0.png" id="1_vu3bg"]
-[ext_resource type="Script" path="res://scripts/skele.gd" id="2_n0l1d"]
 [ext_resource type="AnimationLibrary" uid="uid://4kifbonvdpfq" path="res://animations/BaseEntityAnims.res" id="3_gtcpb"]
 [ext_resource type="PackedScene" uid="uid://blbq4t3k2drou" path="res://scenes/UI/HealthDisplay.tscn" id="4_iwtmm"]
 
@@ -37,13 +37,10 @@ _data = {
 "RESET": SubResource("Animation_kw005")
 }
 
-[node name="skele" type="Node2D"]
+[node name="Mob" type="Node2D"]
 position = Vector2(5.96046e-08, -1)
 scale = Vector2(-1, 1)
-script = ExtResource("2_n0l1d")
-health = 1
-damage = 1
-speed = 0
+script = ExtResource("1_my6js")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4, -175)

@@ -24,10 +24,10 @@ func _ready():
 			sprite.scale *= 1.5
 	
 	if parent.inverted:
-		print("Inverting!")
+		# inverts
 		self.scale.x *= -1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	label.text = str(parent.health)

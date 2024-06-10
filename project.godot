@@ -11,15 +11,25 @@ config_version=5
 [application]
 
 config/name="Cards of Fate"
-run/main_scene="res://scenes/Main.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+run/main_scene="res://scenes/Arena.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/Global.gd"
+LootManager="*res://scripts/LootManager.gd"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/mode=2
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="Cards of Fate"
 
 [rendering]
 

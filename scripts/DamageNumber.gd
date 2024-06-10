@@ -3,7 +3,7 @@ class_name DamageNumber extends Node2D
 @onready
 var label: Label = get_node("Container/Label")
 @onready
-var container: Container = get_node("Container")
+var container = get_node("Container")
 @onready
 var animation_player: AnimationPlayer = $AnimationPlayer
 
