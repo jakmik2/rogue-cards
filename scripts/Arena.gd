@@ -61,14 +61,6 @@ func _ready():
 		mobs.add_child(new_mob)
 		new_mob.setup()
 	
-	#for i in range(len(enemy_lineup)):
-		## parse through the provided enemy string to provide conditions for setup()
-		#var new_enemy = enemy_lineup[i]
-		#$Mobs.get_child(i).tier = new_enemy.right(1).to_int()
-		#new_enemy = new_enemy.left(new_enemy.length()-1)
-		#$Mobs.get_child(i).species = new_enemy
-		#$Mobs.get_child(i).setup()
-	
 	for monster in $Mobs.get_children():
 		# destroy any instances of "None" 
 		# TODO create a system where we can create as many monsters as we wish, not limited to 5

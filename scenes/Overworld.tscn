@@ -24,7 +24,7 @@ offset_left = 208.0
 offset_top = 256.0
 offset_right = 240.0
 offset_bottom = 288.0
-enemies = Array[String](["Skele0"])
+enemies = Array[String](["Skele1"])
 
 [node name="Level2" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
 layout_mode = 0
