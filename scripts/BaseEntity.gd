@@ -1,4 +1,4 @@
-class_name BaseEntity extends Node
+class_name BaseEntity extends Node2D
 
 # Nodes
 @onready var animation_player = $AnimationPlayer
@@ -27,21 +27,27 @@ var inverted = false
 func _ready():
 	animation_player.play('BaseEntityAnims/idle')
 
-func get_stats(entity_name) -> void:
+func get_stats(entity_name, monster_tier = 0) -> void:
+	# Return on "None", empty space in battle
+	if entity_name == "None": return
+	
+	# look up stats in Global dictionary, TODO tier modifiers
 	var entity_stats = Global.stat_lookup[entity_name]
-	health = entity_stats["health"]
-	armor_class = entity_stats["armor_class"]
-	damage = entity_stats["damage"]
-	speed = entity_stats["speed"]
-	crit_chance = entity_stats["crit_chance"]
-	crit_damage = entity_stats["crit_damage"]
+	health = entity_stats["health"] * ( 1 + monster_tier / 2)
+	armor_class = entity_stats["armor_class"] * ( 1 + monster_tier / 2)
+	damage = entity_stats["damage"] * ( 1 + monster_tier / 2)
+	speed = entity_stats["speed"] * ( 1 + monster_tier / 2)
+	crit_chance = entity_stats["crit_chance"] * ( 1 + monster_tier / 2)
+	crit_damage = entity_stats["crit_damage"] * ( 1 + monster_tier / 2)
 
 func get_speed() -> int:
-	return rng.randi_range(-1, 1) + speed
+	return speed
 
 func kill() -> void:
 	status = LifeStatus.DEAD
 	animation_player.play('BaseEntityAnims/death')
+	await animation_player.animation_finished
+	animation_player.play('BaseEntityAnims/ghost')
 
 func attempt_attack() -> int:
 	# Play Attack Animation

@@ -2,16 +2,19 @@ class_name Mob extends BaseEntity
 
 @onready var lootPrefab = preload("res://scenes/Loot.tscn")
 
-# default to Skele
-var mob_type = "Skele"
+# EX: Skele0
+var species
+var tier
+
 
 func _init():
 	# Override inverted for enemy -> This is bad and we shouldn't be doing this
 	inverted = true
 
-func _ready():
+func setup():
 	# substitute with mob type
-	get_stats(mob_type)
+	get_stats(species, tier)
+	get_child(0).set_modulate(Global.TIER_COLORS[tier])
 
 func evaluate_attack(roll, dmg, _invert = false) -> bool:
 	return await super.evaluate_attack(roll, dmg, inverted)
@@ -21,6 +24,7 @@ func kill():
 	var loot: Loot = lootPrefab.instantiate()
 	var loot_status = loot.spawn()
 	if (loot_status):
-		add_child(loot)
+		loot.position = self.position
+		get_parent().get_parent().get_node("Loot").add_child(loot)
 	else:
 		loot.queue_free()

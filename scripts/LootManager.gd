@@ -8,15 +8,15 @@ enum ItemRarity { WORN, FINE, EXCEPTIONAL }
 enum ItemTier { COMMON, RARE, MAGIC }
 
 # Define the drop rates for different categories
-var loot_drop_rate = 0.6  # 60% chance of dropping equipment/card
+var loot_drop_rate = 0.7  # 60% chance of dropping equipment/card
 var category_drop_rates = {
 	# 50/50 for equipment or card
-	EquipmentCategory.CARD: 0.5,	# new card
-	EquipmentCategory.HELM: 0.1,	# health
-	EquipmentCategory.CHEST: 0.1,	# armor_class
-	EquipmentCategory.WEAPON: 0.1,	# damage
-	EquipmentCategory.BOOTS: 0.1,	# speed
-	EquipmentCategory.GLOVES: 0.1,	# crit chance or dmg
+	EquipmentCategory.CARD: 0.75,	# new card
+	EquipmentCategory.HELM: 0.05,	# health
+	EquipmentCategory.CHEST: 0.05,	# armor_class
+	EquipmentCategory.WEAPON: 0.05,	# damage
+	EquipmentCategory.BOOTS: 0.05,	# speed
+	EquipmentCategory.GLOVES: 0.05,	# crit chance or dmg
 }
 
 # Define the drop rates for different materials
@@ -49,13 +49,6 @@ var tier_drop_rates = {
 	ItemTier.MAGIC: 0.1
 }
 
-func _ready():
-	# Example usage: Generate loot
-	var gloot = generate_loot()
-	if gloot.size() > 0:
-		print(gloot)
-	else:
-		print("No loot dropped")
 
 # Main function to generate loot
 func generate_loot() -> Dictionary:

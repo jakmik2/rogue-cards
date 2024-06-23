@@ -1,31 +1,48 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqivgqmx1twp3"]
 
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="1_ag3yt"]
-[ext_resource type="PackedScene" uid="uid://cjukxsdcdjk47" path="res://scenes/Mob.tscn" id="2_mnggg"]
+[ext_resource type="PackedScene" uid="uid://g1f0r1ebadw" path="res://scenes/UI/TextDisplay.tscn" id="2_qw0iy"]
 [ext_resource type="PackedScene" uid="uid://dg6opfstej5al" path="res://scenes/Player.tscn" id="3_xsis2"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ag3yt")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.274409, 0.228076, 0.160221, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_xsis2")]
+position = Vector2(192, 440)
+
+[node name="Loot" type="Node2D" parent="."]
+
 [node name="Mobs" type="Node2D" parent="."]
 scale = Vector2(1, 1.01909)
 
-[node name="Mob 1" parent="Mobs" instance=ExtResource("2_mnggg")]
-position = Vector2(640, 345.406)
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Mob 3" parent="Mobs" instance=ExtResource("2_mnggg")]
-position = Vector2(448, 282.605)
-rotation = 3.14159
-scale = Vector2(1, -1)
+[node name="TextDisplay" parent="UI" instance=ExtResource("2_qw0iy")]
+visible = false
 
-[node name="Mob 2" parent="Mobs" instance=ExtResource("2_mnggg")]
-position = Vector2(448, 471.008)
+[node name="PauseReturn" type="Button" parent="UI"]
+process_mode = 2
+visible = false
+offset_left = 352.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 280.0
+text = "Continue"
 
-[node name="Mob 4" parent="Mobs" instance=ExtResource("2_mnggg")]
-position = Vector2(832, 471.008)
+[node name="ExitButton" type="Button" parent="UI"]
+process_mode = 2
+visible = false
+offset_left = 352.0
+offset_top = 296.0
+offset_right = 608.0
+offset_bottom = 424.0
+text = "Exit"
 
-[node name="Mob 5" parent="Mobs" instance=ExtResource("2_mnggg")]
-position = Vector2(832, 282.605)
-
-[node name="Player" parent="." instance=ExtResource("3_xsis2")]
-position = Vector2(192, 352)
+[connection signal="pressed" from="UI/PauseReturn" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://g1f0r1ebadw"]
+
+[ext_resource type="Script" path="res://scripts/UI/TextDisplay.gd" id="1_pxot8"]
+
+[sub_resource type="Theme" id="Theme_c3lpe"]
+default_font_size = 48
+
+[node name="TextDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_pxot8")
+
+[node name="Backing" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 392.0
+offset_bottom = 224.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 384.0
+offset_bottom = 216.0
+mouse_filter = 2
+theme = SubResource("Theme_c3lpe")
+text = "Buffs Monsters during fight, raises Rewards."

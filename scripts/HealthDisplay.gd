@@ -5,12 +5,9 @@ extends Node2D
 @export var scale_modifier = 1
 
 # Nodes
-@onready
-var parent: BaseEntity = self.get_parent() as BaseEntity
-@onready
-var label: Label = $Label
-@onready
-var sprite: Sprite2D = $Sprite2D
+@onready var parent: BaseEntity = self.get_parent() as BaseEntity
+@onready var label: Label = $Label
+@onready var sprite: Sprite2D = $Sprite
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,4 +27,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if parent.status == parent.LifeStatus.DEAD and visible:
+		visible = false
 	label.text = str(parent.health)

@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://duoq6fcewo54o"]
+
+[ext_resource type="Script" path="res://scripts/Overworld.gd" id="1_lsmee"]
+[ext_resource type="PackedScene" uid="uid://g1f0r1ebadw" path="res://scenes/UI/TextDisplay.tscn" id="1_x8wxk"]
+[ext_resource type="PackedScene" uid="uid://chore4el6n68" path="res://scenes/Level.tscn" id="3_fp77y"]
+
+[node name="Overworld" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lsmee")
+
+[node name="Backing" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.503935, 0.511399, 0.386688, 1)
+
+[node name="Levels" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Level" parent="Levels" instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 256.0
+offset_right = 240.0
+offset_bottom = 288.0
+enemies = Array[String](["Skele0"])
+
+[node name="Level2" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 160.0
+offset_right = 368.0
+offset_bottom = 192.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level")]
+
+[node name="Level3" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 352.0
+offset_right = 368.0
+offset_bottom = 384.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level")]
+
+[node name="Level4" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 64.0
+offset_right = 496.0
+offset_bottom = 96.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level2")]
+
+[node name="Level5" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 256.0
+offset_right = 496.0
+offset_bottom = 288.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level2"), NodePath("../Level3")]
+
+[node name="Level6" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 448.0
+offset_right = 496.0
+offset_bottom = 480.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level3")]
+
+[node name="Level7" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 160.0
+offset_right = 624.0
+offset_bottom = 192.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level4"), NodePath("../Level5")]
+
+[node name="Level8" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 352.0
+offset_right = 624.0
+offset_bottom = 384.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level5"), NodePath("../Level6")]
+
+[node name="Level9" parent="Levels" node_paths=PackedStringArray("prereqs") instance=ExtResource("3_fp77y")]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 256.0
+offset_right = 752.0
+offset_bottom = 288.0
+enemies = Array[String](["Skele0", "Skele0"])
+prereqs = [NodePath("../Level7"), NodePath("../Level8")]
+
+[node name="TextDisplay" parent="." instance=ExtResource("1_x8wxk")]
+visible = false
+
+[node name="DeckManager" type="Button" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 384.0
+offset_right = 165.0
+offset_bottom = 512.0
+text = "Deck
+Manager
+
+"

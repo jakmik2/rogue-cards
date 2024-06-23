@@ -1,6 +1,7 @@
 class_name Player extends BaseEntity
 
-# Used to determine if the player character is affected
+var deck : Array[Loot]
+var equipment_modifiers : Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,5 +10,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func attempt_attack() -> int:
-	print("YEEHEEHEE I'M A NASTY LIL'GOBLIN!")
 	return await super.attempt_attack()
+
+func card_to_deck(card) -> void:
+	pass
+
+func equipment_to_stats(equipment) -> void:
+	# TODO equipment conversion
+	pass
