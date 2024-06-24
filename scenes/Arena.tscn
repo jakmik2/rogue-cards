@@ -7,14 +7,28 @@
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ag3yt")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Wall" type="ColorRect" parent="."]
 offset_right = 960.0
 offset_bottom = 540.0
 mouse_filter = 2
-color = Color(0.274409, 0.228076, 0.160221, 1)
+color = Color(0.671546, 0.330101, 0.390367, 1)
+
+[node name="Floor" type="ColorRect" parent="."]
+offset_top = 160.0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.450567, 0.200789, 0.246698, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_xsis2")]
-position = Vector2(192, 440)
+position = Vector2(192, 353.256)
+
+[node name="LootBacking" type="ColorRect" parent="."]
+offset_top = 160.0
+offset_right = 960.0
+offset_bottom = 376.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.560784)
 
 [node name="Loot" type="Node2D" parent="."]
 

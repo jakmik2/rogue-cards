@@ -6,6 +6,7 @@ var enemies = []
 @onready var mobs : Node2D = $Mobs
 @onready var tooltip : Control = $UI/TextDisplay
 @onready var player_character : Player = $Player
+@onready var loot_backing : ColorRect = $LootBacking
 
 @onready var exit_button : Button = $UI/ExitButton
 @onready var paused_button : Button = $UI/PauseReturn
@@ -49,6 +50,7 @@ var counter: float = 0.0;
 
 func _ready():
 	mobs.hide()
+	loot_backing.hide()
 	enemy_lineup = Global.current_arena_loadout
 	# turn off tooltip
 	hide_tooltip()
@@ -152,6 +154,7 @@ func end_combat():
 		loot.position.x = get_viewport_rect().size.x * loot_counter / ($Loot.get_child_count() + 1)
 		loot.position.y = get_viewport_rect().size.y / 2
 		loot_counter += 1
+	loot_backing.show()
 	current_phase = Phase.LOOTING
 
 func end_looting():
