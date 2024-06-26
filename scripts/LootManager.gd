@@ -2,10 +2,10 @@ extends Node
 
 # Define constants for different types of equipment
 enum EquipmentCategory { CARD, HELM, CHEST, WEAPON, BOOTS, GLOVES }
-enum ItemMaterial { ARCANE, LEATHER, METAL }
+enum ItemMaterial { ARCANE = 2, LEATHER = 1, METAL = 3 }
 enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, MONSTER }
-enum ItemRarity { WORN, FINE, EXCEPTIONAL }
-enum ItemTier { COMMON, RARE, MAGIC }
+enum ItemRarity { WORN = 1, FINE = 2, EXCEPTIONAL = 3 }
+enum ItemTier { COMMON = 1, RARE = 2, MAGIC = 3 }
 
 # Define the drop rates for different categories
 var loot_drop_rate = 0.7  # 60% chance of dropping equipment/card
@@ -49,7 +49,6 @@ var tier_drop_rates = {
 	ItemTier.MAGIC: 0.1
 }
 
-
 # Main function to generate loot
 func generate_loot() -> Dictionary:
 	if randf() > loot_drop_rate:
@@ -62,18 +61,22 @@ func generate_loot() -> Dictionary:
 	var card_type = null
 	var material = null
 	
+	# Construct the loot dictionary
+	print("spawning: " + EquipmentCategory.find_key(category))
 	if category == EquipmentCategory.CARD:
+		print("Setting Card")
 		card_type = choose_card_type()
 	else:
+		print("Setting Material")
 		material = choose_material()
 	
 	# Determine the rarity and tier of the item
 	var rarity = choose_rarity()
 	var tier = choose_tier()
 	
-	# Construct the loot dictionary
+	
 	var loot = {
-		"category": category,
+		"category": EquipmentCategory.find_key(category),
 		"material": material,
 		"card_type": card_type,
 		"rarity": rarity,
@@ -116,3 +119,21 @@ func weighted_random(weights: Dictionary) -> int:
 	
 	# Fallback in case of rounding errors
 	return weights.keys().back()
+
+static func get_stat(category: String) -> String:
+	match category:
+		"HELM": 
+			return "health"
+		"CHEST":
+			return "armor_class"
+		"WEAPON":
+			return "damage"
+		"BOOTS":
+			return "speed"
+		"GLOVES":
+			return "crit_chance"
+		_:
+			return "Ooop"
+
+static func calc_value(equipment: Dictionary) -> int:
+	return equipment['material'] * equipment['rarity'] * equipment['tier']

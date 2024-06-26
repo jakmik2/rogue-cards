@@ -47,7 +47,17 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 		if get_parent().get_child_count() == 1:
 			arena.current_phase = arena.Phase.FINISHED
 			arena.end_looting()
-		# Player.equipment_to_stats(equipment) | Player.add_to_deck(card)
+	 	
+		print("Loot Type before ingestion: " + get_loot_type())
+		
+		if get_loot_type() == "EQUIPMENT":
+			# Add to player stats
+			player.equipment_to_stats(loot)
+		else:
+			# Add to deck
+			var new_card = Card.from_loot(loot)
+			player.card_to_deck(new_card)
+		
 		queue_free()
 
 func _on_mouse_entered():
