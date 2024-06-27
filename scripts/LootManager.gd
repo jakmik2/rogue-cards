@@ -1,22 +1,22 @@
 extends Node
 
 # Define constants for different types of equipment
-enum EquipmentCategory { CARD, HELM, CHEST, WEAPON, BOOTS, GLOVES }
-enum ItemMaterial { ARCANE = 2, LEATHER = 1, METAL = 3 }
-enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, MONSTER }
-enum ItemRarity { WORN = 1, FINE = 2, EXCEPTIONAL = 3 }
-enum ItemTier { COMMON = 1, RARE = 2, MAGIC = 3 }
+enum EquipmentCategory { CARD, HELM, TORSO, WEAPON, BOOTS, GLOVES }
+enum ItemMaterial { ARCANE, LEATHER, METAL }
+enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, SPAWN }
+enum ItemRarity { WORN, FINE, EXCEPTIONAL }
+enum ItemTier { COMMON, RARE, MAGIC }
 
 # Define the drop rates for different categories
 var loot_drop_rate = 0.7  # 60% chance of dropping equipment/card
 var category_drop_rates = {
 	# 50/50 for equipment or card
 	EquipmentCategory.CARD: 0.75,	# new card
-	EquipmentCategory.HELM: 0.05,	# health
-	EquipmentCategory.CHEST: 0.05,	# armor_class
-	EquipmentCategory.WEAPON: 0.05,	# damage
-	EquipmentCategory.BOOTS: 0.05,	# speed
-	EquipmentCategory.GLOVES: 0.05,	# crit chance or dmg
+	EquipmentCategory.HELM: 0.25,	# health
+	EquipmentCategory.TORSO: 0.00,	# armor_class
+	EquipmentCategory.WEAPON: 0.00,	# damage
+	EquipmentCategory.BOOTS: 0.00,	# speed
+	EquipmentCategory.GLOVES: 0.00,	# crit chance or dmg
 }
 
 # Define the drop rates for different materials
@@ -32,7 +32,7 @@ var card_type_drop_rates = {
 	CardType.ATTACK: 0.15,
 	CardType.DEFENSE: 0.15,
 	CardType.UTILITY: 0.15,
-	CardType.MONSTER: 0.4,
+	CardType.SPAWN: 0.4,
 }
 
 # Define the drop rates for item rarity
@@ -50,40 +50,24 @@ var tier_drop_rates = {
 }
 
 # Main function to generate loot
-func generate_loot() -> Dictionary:
+func generate_loot() -> String:
 	if randf() > loot_drop_rate:
-		return {}  # No loot dropped
+		return ""  # No loot dropped
 	
 	# Determine the category of equipment
-	var category = choose_category()
+	var loot_code = str(EquipmentCategory.keys()[choose_category()])[0]
 	
-	# If the category is armor/weapon, determine the material
-	var card_type = null
-	var material = null
-	
-	# Construct the loot dictionary
-	print("spawning: " + EquipmentCategory.find_key(category))
-	if category == EquipmentCategory.CARD:
-		print("Setting Card")
-		card_type = choose_card_type()
+	# pick card_type if card or material if equipment
+	if loot_code[0] == "C":
+		loot_code += str(CardType.keys()[choose_card_type()])[0]
 	else:
-		print("Setting Material")
-		material = choose_material()
+		loot_code += str(ItemMaterial.keys()[choose_material()])[0]
 	
 	# Determine the rarity and tier of the item
-	var rarity = choose_rarity()
-	var tier = choose_tier()
-	
-	
-	var loot = {
-		"category": EquipmentCategory.find_key(category),
-		"material": material,
-		"card_type": card_type,
-		"rarity": rarity,
-		"tier": tier,
-	}
-	
-	return loot
+	loot_code += str(ItemRarity.keys()[choose_rarity()])[0]
+	loot_code += str(ItemTier.keys()[choose_tier()])[0]
+
+	return loot_code
 
 # Helper function to choose an equipment category based on predefined drop rates
 func choose_category() -> int:

@@ -1,10 +1,14 @@
 class_name Loot extends Area2D
 
-@onready var text_template = "res://scenes/UI/"
 var arena
 var player
 
-var loot = {}
+@onready var text_template = "res://scenes/UI/"
+
+# 4 letter code (designed for expansion) that determines type of loot
+var loot_code
+
+var clicked = false
 
 
 func _ready():
@@ -12,52 +16,51 @@ func _ready():
 	player = arena.get_node("Player")
 
 func spawn() -> bool:
-	loot = LootManager.generate_loot()
-	if loot != {}:
-		if loot["card_type"]:
-			# change to appropriate sprite
-			get_child(0).texture = load(
-				"res://sprites/drops/" + get_loot_type() + "-drop.png"
-			)
-		else:
-			# must be equipment
-			get_child(0).texture = load(
-				"res://sprites/drops/" +
-				"equipment" + # LootManager.EquipmentCategory.keys()[loot["category"]] +
-				"-drop.png"
-			)
-		return true
+	loot_code = LootManager.generate_loot()
+	
+	# set the sprite if applicable
+	set_loot_sprite()
+	return true if loot_code != "" else false
+
+func set_loot_sprite():
+	if loot_code == "":
+		return
+	
+	var sprite_path = "res://sprites/"
+	# determine sprite_path dynamically depending on loot_code
+	if loot_code[0] == "C":
+		sprite_path += "card/" + Global.CARD_TYPE[loot_code[1]] + ".png"
 	else:
-		print("NO DROP")
-		return false
+		sprite_path += (
+			"equipment/" + Global.EQUIPMENT_CATEGORY[loot_code[0]] + \
+			"-" + Global.ITEM_MATERIAL[loot_code[1]] + ".png"
+		)
+	
+	# set texture
+	get_node("Sprite").texture = load(sprite_path)
 
 func get_loot_type():
-	if loot["card_type"]:
-		return LootManager.CardType.keys()[loot["card_type"]]
+	if loot_code[0] == "C":
+		return Global.CARD_TYPE[loot_code[1]]
 	else:
-		#return LootManager.EquipmentCategory.keys()[loot["category"]]
-		return "EQUIPMENT"
+		return Global.EQUIPMENT_CATEGORY[loot_code[0]]
 
 func _on_mouse_click(_viewport, _event, _shape_idx):
 	if (
-		Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and 
-		arena.current_phase == arena.Phase.LOOTING
+		Input.is_action_just_pressed("ui_select") and 
+		arena.current_phase == arena.Phase.LOOTING and
+		not clicked
 	):
+		clicked = true
 		arena.hide_tooltip()
-		if get_parent().get_child_count() == 1:
+		if loot_code[0] == "C":
+			player.add_to_deck(loot_code.right(3))
+		else:
+			player.equipment_to_stats(loot_code)
+		
+		if get_parent().get_child_count() == 2:
 			arena.current_phase = arena.Phase.FINISHED
 			arena.end_looting()
-	 	
-		print("Loot Type before ingestion: " + get_loot_type())
-		
-		if get_loot_type() == "EQUIPMENT":
-			# Add to player stats
-			player.equipment_to_stats(loot)
-		else:
-			# Add to deck
-			var new_card = Card.from_loot(loot)
-			player.card_to_deck(new_card)
-		
 		queue_free()
 
 func _on_mouse_entered():

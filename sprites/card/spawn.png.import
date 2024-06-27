@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qrg1gbqsu78t"
-path="res://.godot/imported/helm-leather.png-5982cb0770ad53e88a713a0cc4573b03.ctex"
+uid="uid://c8tey0uxo5kh"
+path="res://.godot/imported/spawn.png-657d3c7bbfe3ba05faf693af9ea54207.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/equipment/helm-leather.png"
-dest_files=["res://.godot/imported/helm-leather.png-5982cb0770ad53e88a713a0cc4573b03.ctex"]
+source_file="res://sprites/card/spawn.png"
+dest_files=["res://.godot/imported/spawn.png-657d3c7bbfe3ba05faf693af9ea54207.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i2qrdraonycb"
-path="res://.godot/imported/blank-drop.png-d7151cbeae68871c3781405ab91eaa88.ctex"
+path="res://.godot/imported/blank.png-41d4452115f0d38337b0fe29e1f044f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/blank-drop.png"
-dest_files=["res://.godot/imported/blank-drop.png-d7151cbeae68871c3781405ab91eaa88.ctex"]
+source_file="res://sprites/card/blank.png"
+dest_files=["res://.godot/imported/blank.png-41d4452115f0d38337b0fe29e1f044f4.ctex"]
 
 [params]
 
