@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5xwdyctndou1"
-path="res://.godot/imported/skele-drop.png-50b334be99b3208e0a5c438771d16e4b.ctex"
+uid="uid://qrg1gbqsu78t"
+path="res://.godot/imported/helm-leather.png-5982cb0770ad53e88a713a0cc4573b03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/skele-drop.png"
-dest_files=["res://.godot/imported/skele-drop.png-50b334be99b3208e0a5c438771d16e4b.ctex"]
+source_file="res://sprites/equipment/helm-leather.png"
+dest_files=["res://.godot/imported/helm-leather.png-5982cb0770ad53e88a713a0cc4573b03.ctex"]
 
 [params]
 

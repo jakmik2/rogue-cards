@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8tey0uxo5kh"
-path="res://.godot/imported/monster-drop.png-f46080c42868a62f05e4ca3ac2aec2c2.ctex"
+uid="uid://qmqv8oa80hk4"
+path="res://.godot/imported/equipment.png-eec4c3349b2e216c830061b5c7bde447.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/monster-drop.png"
-dest_files=["res://.godot/imported/monster-drop.png-f46080c42868a62f05e4ca3ac2aec2c2.ctex"]
+source_file="res://sprites/card/equipment.png"
+dest_files=["res://.godot/imported/equipment.png-eec4c3349b2e216c830061b5c7bde447.ctex"]
 
 [params]
 

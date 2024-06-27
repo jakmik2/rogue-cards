@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djag5j6vlni7d"
-path="res://.godot/imported/magic-drop.png-a27d6ca78bfd2c0da412103eb6963c60.ctex"
+uid="uid://dprii7ubrywqq"
+path="res://.godot/imported/helm-metalv2.png-5cbf5b1d6a52396c6f4e99653ff53943.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/magic-drop.png"
-dest_files=["res://.godot/imported/magic-drop.png-a27d6ca78bfd2c0da412103eb6963c60.ctex"]
+source_file="res://sprites/bases_or_alts/helm-metalv2.png"
+dest_files=["res://.godot/imported/helm-metalv2.png-5cbf5b1d6a52396c6f4e99653ff53943.ctex"]
 
 [params]
 
