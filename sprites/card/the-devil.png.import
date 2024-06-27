@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djsoqvustyd8i"
-path="res://.godot/imported/utility.png-486309e90574f03ceb2c2e0c82a47bc3.ctex"
+uid="uid://c8tey0uxo5kh"
+path="res://.godot/imported/the-devil.png-7066816b419facc3abb1c63ef00f3ef6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/card/utility.png"
-dest_files=["res://.godot/imported/utility.png-486309e90574f03ceb2c2e0c82a47bc3.ctex"]
+source_file="res://sprites/card/the-devil.png"
+dest_files=["res://.godot/imported/the-devil.png-7066816b419facc3abb1c63ef00f3ef6.ctex"]
 
 [params]
 

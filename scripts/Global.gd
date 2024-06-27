@@ -1,58 +1,53 @@
 extends Node
 
-#enum EquipmentCategory { CARD, HELM, CHEST, WEAPON, BOOTS, GLOVES }
-#enum ItemMaterial { ARCANE, LEATHER, METAL }
-#enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, MONSTER }
-#enum ItemRarity { WORN, FINE, EXCEPTIONAL }
-#enum ItemTier { COMMON, RARE, MAGIC }
 
 var EQUIPMENT_CATEGORY = {
-	"C" : "card",
-	"H" : "helm",
-	"T" : "torso",
-	"W" : "weapon",
-	"B" : "boots",
-	"G" : "gloves",
+	"A" : "card",
+	"B" : "helm",
+	"C" : "torso",
+	"D" : "weapon",
+	"E" : "boots",
+	"F" : "gloves",
 }
 
 var ITEM_MATERIAL = {
 	"A" : "arcane",
-	"L" : "leather",
-	"M" : "metal",
+	"B" : "leather",
+	"C" : "metal",
 }
 
 var CARD_TYPE = {
-	"M" : "magic",
-	"A" : "attack",
-	"D" : "defense",
-	"U" : "utility",
-	"S" : "spawn",
+	"A" : "the-magician",
+	"B" : "strength",
+	"C" : "the-tower",
+	"D" : "the-hermit",
+	"E" : "the-devil",
+	"F" : "death",
 }
 
 var ITEM_RARITY = {
-	"W" : "worn",
-	"F" : "fine",
-	"E" : "exceptional",
+	"A" : "worn",
+	"B" : "fine",
+	"C" : "exceptional",
 }
 
 var ITEM_TIER = {
-	"C" : "common",
-	"R" : "rare",
-	"M" : "magic",
+	"A" : "common",
+	"B" : "rare",
+	"C" : "magic",
 }
 
-# TODO figure out how to select monsters
-enum Monsters { SKELE }
 
 var LOOT_DESCRIPTIONS = {
 	# Loot descriptions
 	"tarot" : "Various uses",
-	"attack" : "Buffs Hero Damage during fight.",
-	"defense" : "Buffs Hero Armor Class during fight.",
-	"magic" : "Buffs Hero Crit Chance during fight.",
-	"utility" : "Buffs Hero Speed during fight.",
+	"strength" : "Buffs AllDamage during fight.",
+	"the-tower" : "Buffs AllArmorClass during fight.",
+	"the-magician" : "Buffs AllCrits during fight.",
+	"the-hermit" : "Buffs AllSpeed during fight.",
 	"helm" : "Permanent Small Buff to Hero.",
-	"spawn" : "Buffs Monsters during fight, raises Rewards.",
+	"the-devil" : "Buffs Monster Tiers if Possible.",
+	"death" : "Greatly Increases Enemy Health and Damage"
 }
 
 var TAROT_CARDS = [ # numbered 0 to 21
