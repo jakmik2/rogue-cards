@@ -1,5 +1,48 @@
 extends Node
 
+#enum EquipmentCategory { CARD, HELM, CHEST, WEAPON, BOOTS, GLOVES }
+#enum ItemMaterial { ARCANE, LEATHER, METAL }
+#enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, MONSTER }
+#enum ItemRarity { WORN, FINE, EXCEPTIONAL }
+#enum ItemTier { COMMON, RARE, MAGIC }
+
+var EQUIPMENT_CATEGORY = {
+	"C" : "card",
+	"H" : "helm",
+	"T" : "torso",
+	"W" : "weapon",
+	"B" : "boots",
+	"G" : "gloves",
+}
+
+var ITEM_MATERIAL = {
+	"A" : "arcane",
+	"L" : "leather",
+	"M" : "metal",
+}
+
+var CARD_TYPE = {
+	"M" : "magic",
+	"A" : "attack",
+	"D" : "defense",
+	"U" : "utility",
+	"S" : "spawn",
+}
+
+var ITEM_RARITY = {
+	"W" : "worn",
+	"F" : "fine",
+	"E" : "exceptional",
+}
+
+var ITEM_TIER = {
+	"C" : "common",
+	"R" : "rare",
+	"M" : "magic",
+}
+
+var MONSTERS = ["Skele", ]
+
 var LOOT_DESCRIPTIONS = {
 	# Loot descriptions
 	"TAROT" : "Various uses",
@@ -8,7 +51,7 @@ var LOOT_DESCRIPTIONS = {
 	"MAGIC" : "Buffs Hero Crit Chance during fight.",
 	"UTILITY" : "Buffs Hero Speed during fight.",
 	"EQUIPMENT" : "Permanent Small Buff to Hero.",
-	"MONSTER" : "Buffs Monsters during fight, raises Rewards.",
+	"SPAWN" : "Buffs Monsters during fight, raises Rewards.",
 }
 
 var TAROT_CARDS = [ # numbered 0 to 21

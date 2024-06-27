@@ -24,6 +24,7 @@ color = Color(0.450567, 0.200789, 0.246698, 1)
 position = Vector2(192, 353.256)
 
 [node name="LootBacking" type="ColorRect" parent="."]
+visible = false
 offset_top = 160.0
 offset_right = 960.0
 offset_bottom = 376.0

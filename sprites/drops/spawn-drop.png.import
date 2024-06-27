@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5xwdyctndou1"
-path="res://.godot/imported/skele-drop.png-50b334be99b3208e0a5c438771d16e4b.ctex"
+uid="uid://boabukpq2hsya"
+path="res://.godot/imported/spawn-drop.png-4c72799f9dd1e6692531cfa20180649a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/skele-drop.png"
-dest_files=["res://.godot/imported/skele-drop.png-50b334be99b3208e0a5c438771d16e4b.ctex"]
+source_file="res://sprites/drops/spawn-drop.png"
+dest_files=["res://.godot/imported/spawn-drop.png-4c72799f9dd1e6692531cfa20180649a.ctex"]
 
 [params]
 

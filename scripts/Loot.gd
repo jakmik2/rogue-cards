@@ -5,6 +5,8 @@ var arena
 var player
 
 var loot = {}
+# UP NEXT TODO loot code
+var loot_code 
 
 
 func _ready():
@@ -30,6 +32,22 @@ func spawn() -> bool:
 	else:
 		print("NO DROP")
 		return false
+
+func set_loot_sprite(code):
+	var sprite_lo = ""
+	if code[0] == "C":
+		sprite_lo += "card/"
+	else:
+		sprite_lo += "equipment/"
+	
+	match code[1]:
+		"A":
+			pass
+		"L":
+			pass
+		"M":
+			pass
+	
 
 func get_loot_type():
 	if loot["card_type"]:

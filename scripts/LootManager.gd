@@ -1,9 +1,9 @@
 extends Node
 
 # Define constants for different types of equipment
-enum EquipmentCategory { CARD, HELM, CHEST, WEAPON, BOOTS, GLOVES }
+enum EquipmentCategory { CARD, HELM, TORSO, WEAPON, BOOTS, GLOVES }
 enum ItemMaterial { ARCANE, LEATHER, METAL }
-enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, MONSTER }
+enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, SPAWN }
 enum ItemRarity { WORN, FINE, EXCEPTIONAL }
 enum ItemTier { COMMON, RARE, MAGIC }
 
@@ -13,7 +13,7 @@ var category_drop_rates = {
 	# 50/50 for equipment or card
 	EquipmentCategory.CARD: 0.75,	# new card
 	EquipmentCategory.HELM: 0.05,	# health
-	EquipmentCategory.CHEST: 0.05,	# armor_class
+	EquipmentCategory.TORSO: 0.05,	# armor_class
 	EquipmentCategory.WEAPON: 0.05,	# damage
 	EquipmentCategory.BOOTS: 0.05,	# speed
 	EquipmentCategory.GLOVES: 0.05,	# crit chance or dmg
@@ -32,7 +32,7 @@ var card_type_drop_rates = {
 	CardType.ATTACK: 0.15,
 	CardType.DEFENSE: 0.15,
 	CardType.UTILITY: 0.15,
-	CardType.MONSTER: 0.4,
+	CardType.SPAWN: 0.4,
 }
 
 # Define the drop rates for item rarity
@@ -55,22 +55,30 @@ func generate_loot() -> Dictionary:
 	if randf() > loot_drop_rate:
 		return {}  # No loot dropped
 	
-	# Determine the category of equipment
-	var category = choose_category()
-	
 	# If the category is armor/weapon, determine the material
 	var card_type = null
 	var material = null
+	var loot_code = ""
+	
+	# Determine the category of equipment
+	var category = choose_category()
+	loot_code += str(EquipmentCategory.keys()[category])[0]
 	
 	if category == EquipmentCategory.CARD:
 		card_type = choose_card_type()
+		loot_code += str(CardType.keys()[card_type])[0]
 	else:
 		material = choose_material()
+		loot_code += str(ItemMaterial.keys()[material])[0]
 	
 	# Determine the rarity and tier of the item
 	var rarity = choose_rarity()
 	var tier = choose_tier()
 	
+	loot_code += str(ItemRarity.keys()[rarity])[0]
+	loot_code += str(ItemTier.keys()[tier])[0]
+	
+	print(loot_code)
 	# Construct the loot dictionary
 	var loot = {
 		"category": category,
