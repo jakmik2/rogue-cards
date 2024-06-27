@@ -41,17 +41,18 @@ var ITEM_TIER = {
 	"M" : "magic",
 }
 
-var MONSTERS = ["Skele", ]
+# TODO figure out how to select monsters
+enum Monsters { SKELE }
 
 var LOOT_DESCRIPTIONS = {
 	# Loot descriptions
-	"TAROT" : "Various uses",
-	"ATTACK" : "Buffs Hero Damage during fight.",
-	"DEFENSE" : "Buffs Hero Armor Class during fight.",
-	"MAGIC" : "Buffs Hero Crit Chance during fight.",
-	"UTILITY" : "Buffs Hero Speed during fight.",
-	"EQUIPMENT" : "Permanent Small Buff to Hero.",
-	"SPAWN" : "Buffs Monsters during fight, raises Rewards.",
+	"tarot" : "Various uses",
+	"attack" : "Buffs Hero Damage during fight.",
+	"defense" : "Buffs Hero Armor Class during fight.",
+	"magic" : "Buffs Hero Crit Chance during fight.",
+	"utility" : "Buffs Hero Speed during fight.",
+	"helm" : "Permanent Small Buff to Hero.",
+	"spawn" : "Buffs Monsters during fight, raises Rewards.",
 }
 
 var TAROT_CARDS = [ # numbered 0 to 21
@@ -73,23 +74,24 @@ var TIER_COLORS = {
 var stat_lookup = {
 	# PLAYER
 	"Player" : {
-		"health" : 30,
-		"armor_class" : 0,
-		"damage" : 5,
-		"speed" : 11,
-		"crit_chance" : 0,
-		"crit_damage" : 5,
+		"health"		: 30,
+		"armor_class"	: 0,
+		"damage"		: 10,
+		"speed"			: 11,
+		"crit_chance"	: 0,
+		"crit_damage"	: 5,
 	},
 	# MOBS
 	"Skele" : {
-		"health" : 10,
-		"armor_class" : 0,
-		"damage" : 1,
-		"speed" : 10,
-		"crit_chance" : 15,
-		"crit_damage" : 3,
+		"health"		: 10,
+		"armor_class"	: 0,
+		"damage"		: 1,
+		"speed"			: 10,
+		"crit_chance"	: 15,
+		"crit_damage"	: 3,
 	},
 }
 
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
+var current_player_deck : Array[String] = []
 

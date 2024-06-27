@@ -6,8 +6,9 @@ var enemies = []
 @onready var mobs : Node2D = $Mobs
 @onready var tooltip : Control = $UI/TextDisplay
 @onready var player_character : Player = $Player
-@onready var loot_backing : ColorRect = $LootBacking
+@onready var loot_backing : ColorRect = $Loot/LootBacking
 
+@onready var delay_timer : Timer = $DelayTimer
 @onready var exit_button : Button = $UI/ExitButton
 @onready var paused_button : Button = $UI/PauseReturn
 
@@ -129,7 +130,6 @@ func combat_round():
 				current_state = CombatState.INACTIVE
 				player_character.kill()
 			elif (target.health <= 0 && source == player_character):
-				print("Got One!")
 				# remove enemy from list
 				enemies.pop_at(enemy_idx)
 				combat_order.pop_at(combat_order.find(target))
@@ -140,6 +140,8 @@ func combat_round():
 				print("Congrats! You've won!\nCollect Loot to Continue.")
 				current_state = CombatState.INACTIVE
 				current_phase = Phase.LOOTING
+				delay_timer.start()
+				await delay_timer.timeout
 				end_combat()
 		else:
 			print("Big miss from %s" % source)
@@ -149,16 +151,30 @@ func combat_round():
 
 func end_combat():
 	var loot_counter = 1
+	
 	for loot in $Loot.get_children():
-		# collect loot and put it in an aesthetic order
-		loot.position.x = get_viewport_rect().size.x * loot_counter / ($Loot.get_child_count() + 1)
+		if loot.name == "LootBacking":
+			if $Loot.get_child_count() == 1:
+				# exit out of scene without looting
+				current_phase = Phase.FINISHED
+				end_looting()
+				return
+			else:
+				# skip loot backing and continue onto loot positions
+				continue
+		
+		# collect loot and center it on the screen
+		loot.position.x = get_viewport_rect().size.x * loot_counter / ($Loot.get_child_count())
 		loot.position.y = get_viewport_rect().size.y / 2
 		loot_counter += 1
+	
+	# show loot backing, proceed to looting phase
 	loot_backing.show()
 	current_phase = Phase.LOOTING
 
 func end_looting():
 	print("moving along. . .")
+	player_character.deck_to_global()
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
 
 func toggle_tooltip():

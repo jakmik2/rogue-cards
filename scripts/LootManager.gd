@@ -12,11 +12,11 @@ var loot_drop_rate = 0.7  # 60% chance of dropping equipment/card
 var category_drop_rates = {
 	# 50/50 for equipment or card
 	EquipmentCategory.CARD: 0.75,	# new card
-	EquipmentCategory.HELM: 0.05,	# health
-	EquipmentCategory.TORSO: 0.05,	# armor_class
-	EquipmentCategory.WEAPON: 0.05,	# damage
-	EquipmentCategory.BOOTS: 0.05,	# speed
-	EquipmentCategory.GLOVES: 0.05,	# crit chance or dmg
+	EquipmentCategory.HELM: 0.25,	# health
+	EquipmentCategory.TORSO: 0.00,	# armor_class
+	EquipmentCategory.WEAPON: 0.00,	# damage
+	EquipmentCategory.BOOTS: 0.00,	# speed
+	EquipmentCategory.GLOVES: 0.00,	# crit chance or dmg
 }
 
 # Define the drop rates for different materials
@@ -51,44 +51,24 @@ var tier_drop_rates = {
 
 
 # Main function to generate loot
-func generate_loot() -> Dictionary:
+func generate_loot() -> String:
 	if randf() > loot_drop_rate:
-		return {}  # No loot dropped
-	
-	# If the category is armor/weapon, determine the material
-	var card_type = null
-	var material = null
-	var loot_code = ""
+		return ""  # No loot dropped
 	
 	# Determine the category of equipment
-	var category = choose_category()
-	loot_code += str(EquipmentCategory.keys()[category])[0]
+	var loot_code = str(EquipmentCategory.keys()[choose_category()])[0]
 	
-	if category == EquipmentCategory.CARD:
-		card_type = choose_card_type()
-		loot_code += str(CardType.keys()[card_type])[0]
+	# pick card_type if card or material if equipment
+	if loot_code[0] == "C":
+		loot_code += str(CardType.keys()[choose_card_type()])[0]
 	else:
-		material = choose_material()
-		loot_code += str(ItemMaterial.keys()[material])[0]
+		loot_code += str(ItemMaterial.keys()[choose_material()])[0]
 	
 	# Determine the rarity and tier of the item
-	var rarity = choose_rarity()
-	var tier = choose_tier()
-	
-	loot_code += str(ItemRarity.keys()[rarity])[0]
-	loot_code += str(ItemTier.keys()[tier])[0]
-	
-	print(loot_code)
-	# Construct the loot dictionary
-	var loot = {
-		"category": category,
-		"material": material,
-		"card_type": card_type,
-		"rarity": rarity,
-		"tier": tier,
-	}
-	
-	return loot
+	loot_code += str(ItemRarity.keys()[choose_rarity()])[0]
+	loot_code += str(ItemTier.keys()[choose_tier()])[0]
+
+	return loot_code
 
 # Helper function to choose an equipment category based on predefined drop rates
 func choose_category() -> int:

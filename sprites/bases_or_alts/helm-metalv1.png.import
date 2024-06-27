@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qmqv8oa80hk4"
-path="res://.godot/imported/equipment-drop.png-e48719481ccb99abec9a2fa050f551da.ctex"
+uid="uid://c27nf3fysfysa"
+path="res://.godot/imported/helm-metalv1.png-dbd9ea9cc0c9cac78a555385b1f28b56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/equipment-drop.png"
-dest_files=["res://.godot/imported/equipment-drop.png-e48719481ccb99abec9a2fa050f551da.ctex"]
+source_file="res://sprites/bases_or_alts/helm-metalv1.png"
+dest_files=["res://.godot/imported/helm-metalv1.png-dbd9ea9cc0c9cac78a555385b1f28b56.ctex"]
 
 [params]
 

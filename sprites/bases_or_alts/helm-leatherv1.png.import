@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bleksyjgfp87m"
-path="res://.godot/imported/defense-drop.png-764a0c0e4b1a0057149f744d63b2d134.ctex"
+uid="uid://cr5ywnck8vc32"
+path="res://.godot/imported/helm-leatherv1.png-f4f68e0b3a491d4d9b2d8ada787a369f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/defense-drop.png"
-dest_files=["res://.godot/imported/defense-drop.png-764a0c0e4b1a0057149f744d63b2d134.ctex"]
+source_file="res://sprites/bases_or_alts/helm-leatherv1.png"
+dest_files=["res://.godot/imported/helm-leatherv1.png-f4f68e0b3a491d4d9b2d8ada787a369f.ctex"]
 
 [params]
 

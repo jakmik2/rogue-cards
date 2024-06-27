@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6lwndeghysv5"]
+[gd_scene load_steps=2 format=3 uid="uid://c6lwndeghysv5"]
 
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_b0rvh"]
-[ext_resource type="Texture2D" uid="uid://c8tey0uxo5kh" path="res://sprites/drops/monster-drop.png" id="2_sklu1"]
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_b0rvh")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_sklu1")

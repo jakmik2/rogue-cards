@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boabukpq2hsya"
-path="res://.godot/imported/spawn-drop.png-4c72799f9dd1e6692531cfa20180649a.ctex"
+uid="uid://djag5j6vlni7d"
+path="res://.godot/imported/magic.png-010dbe67ebce69a521970206fb9ac9ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/drops/spawn-drop.png"
-dest_files=["res://.godot/imported/spawn-drop.png-4c72799f9dd1e6692531cfa20180649a.ctex"]
+source_file="res://sprites/card/magic.png"
+dest_files=["res://.godot/imported/magic.png-010dbe67ebce69a521970206fb9ac9ba.ctex"]
 
 [params]
 
