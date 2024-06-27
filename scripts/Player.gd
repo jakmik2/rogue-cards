@@ -16,6 +16,13 @@ func card_to_deck(card) -> void:
 	print("Pushing card")
 	deck.push_back(card)
 
+func draw(n = 5) -> Array[Card]:
+	randomize()
+	deck.shuffle()
+	var draw_size = min(deck.size(), 5)
+	return deck.slice(0, draw_size)
+	
+
 func equipment_to_stats(equipment) -> void:
 	# TODO equipment conversion
 	print("Consuming Equipment : "+ equipment['category'])
