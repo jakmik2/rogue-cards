@@ -103,21 +103,3 @@ func weighted_random(weights: Dictionary) -> int:
 	
 	# Fallback in case of rounding errors
 	return weights.keys().back()
-
-static func get_stat(category: String) -> String:
-	match category:
-		"HELM": 
-			return "health"
-		"CHEST":
-			return "armor_class"
-		"WEAPON":
-			return "damage"
-		"BOOTS":
-			return "speed"
-		"GLOVES":
-			return "crit_chance"
-		_:
-			return "Ooop"
-
-static func calc_value(equipment: Dictionary) -> int:
-	return equipment['material'] * equipment['rarity'] * equipment['tier']

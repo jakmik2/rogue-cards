@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="1_ag3yt"]
 [ext_resource type="PackedScene" uid="uid://g1f0r1ebadw" path="res://scenes/UI/TextDisplay.tscn" id="2_qw0iy"]
 [ext_resource type="PackedScene" uid="uid://dg6opfstej5al" path="res://scenes/Player.tscn" id="3_xsis2"]
-[ext_resource type="PackedScene" uid="uid://i65m2fwwgr5h" path="res://scenes/Hand.tscn" id="4_mv8in"]
+[ext_resource type="PackedScene" uid="uid://i65m2fwwgr5h" path="res://scenes/Hand.tscn" id="4_402kl"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ag3yt")
@@ -61,6 +61,11 @@ offset_bottom = 424.0
 text = "Exit"
 
 [node name="DelayTimer" type="Timer" parent="."]
+
+[node name="Hand" parent="." instance=ExtResource("4_402kl")]
+position = Vector2(480, 440)
+fixed_hand_width = 500
+hand_size = 4
 
 [connection signal="pressed" from="UI/PauseReturn" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/ExitButton" to="." method="_on_exit_button_pressed"]

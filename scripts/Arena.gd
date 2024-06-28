@@ -7,6 +7,7 @@ var enemies = []
 @onready var tooltip : Control = $UI/TextDisplay
 @onready var player_character : Player = $Player
 @onready var loot_backing : ColorRect = $Loot/LootBacking
+@onready var hand: Hand = $Hand
 
 @onready var delay_timer : Timer = $DelayTimer
 @onready var exit_button : Button = $UI/ExitButton
@@ -82,6 +83,9 @@ func _process(delta):
 	if paused:
 		return
 		
+	if !hand.played:
+		return
+	
 	counter += delta
 	# evaluate combat state and turn order
 	# skip if not in combat or if actively resolving a round
@@ -174,7 +178,6 @@ func end_combat():
 
 func end_looting():
 	print("moving along. . .")
-	player_character.deck_to_global()
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
 
 func toggle_tooltip():

@@ -18,16 +18,8 @@ func _ready():
 func attempt_attack() -> int:
 	return await super.attempt_attack()
 
-func add_to_deck(card) -> void:
-	print(card)
-	deck.append(card)
-	print(deck)
-
 func equipment_to_stats(equipment) -> void:
 	# TODO equipment conversion
 	print("ADDED " + equipment + " TO PLAYER STATS")
 	Global.stat_lookup["Player"]["damage"] += 2
 	print("NEW DAMAGE: " + str(Global.stat_lookup["Player"]["damage"]))
-
-func deck_to_global() -> void:
-	Global.current_player_deck = deck

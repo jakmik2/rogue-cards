@@ -95,3 +95,12 @@ var stat_lookup = {
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
 var current_player_deck : Array[String] = []
 
+func draw(n = 5) -> Array[String]:
+	var max_n = min(current_player_deck.size(), n)
+	randomize()
+	current_player_deck.shuffle()
+	return current_player_deck.slice(0, max_n)
+
+func add_to_deck(card_code) -> void:
+	print(card_code)
+	Global.current_player_deck.append(card_code)
