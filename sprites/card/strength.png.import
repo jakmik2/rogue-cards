@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8tey0uxo5kh"
-path="res://.godot/imported/spawn.png-657d3c7bbfe3ba05faf693af9ea54207.ctex"
+uid="uid://k5g5jw6m2cnq"
+path="res://.godot/imported/strength.png-bc138d523fb2471da79c0bdded8a1195.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/card/spawn.png"
-dest_files=["res://.godot/imported/spawn.png-657d3c7bbfe3ba05faf693af9ea54207.ctex"]
+source_file="res://sprites/card/strength.png"
+dest_files=["res://.godot/imported/strength.png-bc138d523fb2471da79c0bdded8a1195.ctex"]
 
 [params]
 

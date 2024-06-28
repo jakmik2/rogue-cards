@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgogfycy5xruk"]
+
+[ext_resource type="Script" path="res://scripts/UI/StatDiplay.gd" id="1_l52jq"]
+
+[sub_resource type="Theme" id="Theme_m0335"]
+default_font_size = 32
+
+[node name="StatDisplay" type="ColorRect"]
+offset_right = 344.0
+offset_bottom = 304.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.635294)
+script = ExtResource("1_l52jq")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 336.0
+offset_bottom = 298.0
+columns = 2
+metadata/_edit_group_ = true
+
+[node name="Health" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "Health: "
+
+[node name="CurrentHealth" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "0"
+
+[node name="ArmorClass" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "Armor Class: "
+
+[node name="CurrentArmorClass" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "0"
+
+[node name="Damage" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "Damage: "
+
+[node name="CurrentDamage" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "0"
+
+[node name="Speed" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "Speed: "
+
+[node name="CurrentSpeed" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "0"
+
+[node name="Crit Chance" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "Critical Chance: "
+
+[node name="CurrentCChance" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "0"
+
+[node name="Crit Damage" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "Critical Damage: "
+
+[node name="CurrentCDamage" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_m0335")
+text = "0"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

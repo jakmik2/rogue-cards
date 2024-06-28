@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwsljk6mc13qo"]
+
+[ext_resource type="PackedScene" uid="uid://dgogfycy5xruk" path="res://scenes/UI/StatDiplay.tscn" id="1_xcen1"]
+
+[node name="PauseMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 536.0
+
+[node name="PauseReturn" type="Button" parent="."]
+process_mode = 2
+layout_mode = 0
+offset_left = 568.0
+offset_top = 120.0
+offset_right = 824.0
+offset_bottom = 248.0
+text = "Continue"
+
+[node name="ExitButton" type="Button" parent="."]
+process_mode = 2
+layout_mode = 0
+offset_left = 568.0
+offset_top = 288.0
+offset_right = 824.0
+offset_bottom = 416.0
+text = "Exit"
+
+[node name="StatDisplay" parent="." instance=ExtResource("1_xcen1")]
+process_mode = 2
+layout_mode = 0
+offset_left = 136.0
+offset_top = 120.0
+offset_right = 488.0
+offset_bottom = 416.0

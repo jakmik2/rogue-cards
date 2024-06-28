@@ -1,58 +1,73 @@
 extends Node
 
-#enum EquipmentCategory { CARD, HELM, CHEST, WEAPON, BOOTS, GLOVES }
-#enum ItemMaterial { ARCANE, LEATHER, METAL }
-#enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, MONSTER }
-#enum ItemRarity { WORN, FINE, EXCEPTIONAL }
-#enum ItemTier { COMMON, RARE, MAGIC }
-
 var EQUIPMENT_CATEGORY = {
-	"C" : "card",
-	"H" : "helm",
-	"T" : "torso",
-	"W" : "weapon",
-	"B" : "boots",
-	"G" : "gloves",
+	"A" : "card",
+	"B" : "helm",
+	"C" : "torso",
+	"D" : "weapon",
+	"E" : "gloves",
+	"F" : "boots",
 }
 
 var ITEM_MATERIAL = {
 	"A" : "arcane",
-	"L" : "leather",
-	"M" : "metal",
+	"B" : "leather",
+	"C" : "metal",
 }
 
 var CARD_TYPE = {
-	"M" : "magic",
-	"A" : "attack",
-	"D" : "defense",
-	"U" : "utility",
-	"S" : "spawn",
+	"A" : "the-magician",
+	"B" : "strength",
+	"C" : "the-tower",
+	"D" : "the-hermit",
+	"E" : "the-devil",
+	"F" : "death",
 }
 
 var ITEM_RARITY = {
-	"W" : "worn",
-	"F" : "fine",
-	"E" : "exceptional",
+	"A" : "worn",
+	"B" : "fine",
+	"C" : "exceptional",
+	"D" : "perfect"
 }
 
 var ITEM_TIER = {
-	"C" : "common",
-	"R" : "rare",
-	"M" : "magic",
+	"A" : "common",
+	"B" : "rare",
+	"C" : "magic",
+	"D" : "legendary",
 }
 
-# TODO figure out how to select monsters
-enum Monsters { SKELE }
+enum mods { A, B, C, D, }
+
+# base stat increase, increased by base tier + rarity + 1
+var BASE_STAT_INCREASE = {
+	"health"		: 10,
+	"armor_class"	: 2,
+	"damage"		: 5,
+	"speed"			: 1,
+	"crit_chance"	: 0.5,
+	"crit_damage"	: 0.5,
+}
+
+var EQUIPMENT_STATS = {
+	"helm" 		: ["health", "damage"],
+	"torso" 	: ["armor_class", "health"],
+	"weapon" 	: ["damage", "crit_chance"],
+	"gloves" 	: ["crit_chance", "speed"],
+	"boots" 	: ["speed", "armor_class"],
+}
 
 var LOOT_DESCRIPTIONS = {
 	# Loot descriptions
 	"tarot" : "Various uses",
-	"attack" : "Buffs Hero Damage during fight.",
-	"defense" : "Buffs Hero Armor Class during fight.",
-	"magic" : "Buffs Hero Crit Chance during fight.",
-	"utility" : "Buffs Hero Speed during fight.",
-	"helm" : "Permanent Small Buff to Hero.",
-	"spawn" : "Buffs Monsters during fight, raises Rewards.",
+	"strength" : "Buffs All Damage during fight.",
+	"the-tower" : "Buffs All Armor Classes during fight.",
+	"the-magician" : "Buffs All Crits during fight.",
+	"the-hermit" : "Buffs All Speed during fight.",
+	"helm" : "Permanent Buff to Hero.",
+	"the-devil" : "Buffs Monster Tiers if Possible.",
+	"death" : "Greatly Increases Enemy Health and Damage"
 }
 
 var TAROT_CARDS = [ # numbered 0 to 21
@@ -66,9 +81,10 @@ var TAROT_CARDS = [ # numbered 0 to 21
 
 var TIER_COLORS = {
 	0 : "ffffff",
-	1 : "00ffff",
-	2 : "ffff00",
-	3 : "ff0000",
+	1 : "73bed3",
+	2 : "de9e41",
+	3 : "a53030",
+	4 : "c65197",
 }
 
 var stat_lookup = {
@@ -85,7 +101,7 @@ var stat_lookup = {
 	"Skele" : {
 		"health"		: 10,
 		"armor_class"	: 0,
-		"damage"		: 1,
+		"damage"		: 3,
 		"speed"			: 10,
 		"crit_chance"	: 15,
 		"crit_damage"	: 3,
@@ -94,6 +110,10 @@ var stat_lookup = {
 
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
 var current_player_deck : Array[String] = []
+
+var current_overworld_level = 0
+var current_level_name : String
+
 
 func draw(n = 5) -> Array[String]:
 	var max_n = min(current_player_deck.size(), n)

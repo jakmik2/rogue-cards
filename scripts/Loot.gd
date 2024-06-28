@@ -7,7 +7,6 @@ var player
 
 # 4 letter code (designed for expansion) that determines type of loot
 var loot_code
-
 var clicked = false
 
 
@@ -16,6 +15,7 @@ func _ready():
 	player = arena.get_node("Player")
 
 func spawn() -> bool:
+	# create loot code
 	loot_code = LootManager.generate_loot()
 	
 	# set the sprite if applicable
@@ -28,11 +28,14 @@ func set_loot_sprite():
 	
 	var sprite_path = "res://sprites/"
 	# determine sprite_path dynamically depending on loot_code
-	if loot_code[0] == "C":
+	print(loot_code)
+	if loot_code[0] == "A":
 		sprite_path += "card/" + Global.CARD_TYPE[loot_code[1]] + ".png"
 	else:
 		sprite_path += (
-			"equipment/" + Global.EQUIPMENT_CATEGORY[loot_code[0]] + \
+			# BIG TODO add equipment sprites for all equipment and uncomment below
+			#"equipment/" + Global.EQUIPMENT_CATEGORY[loot_code[0]] + \
+			"equipment/" + "helm" + \
 			"-" + Global.ITEM_MATERIAL[loot_code[1]] + ".png"
 		)
 	
@@ -40,7 +43,7 @@ func set_loot_sprite():
 	get_node("Sprite").texture = load(sprite_path)
 
 func get_loot_type():
-	if loot_code[0] == "C":
+	if loot_code[0] == "A":
 		return Global.CARD_TYPE[loot_code[1]]
 	else:
 		return Global.EQUIPMENT_CATEGORY[loot_code[0]]
@@ -53,7 +56,7 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 	):
 		clicked = true
 		arena.hide_tooltip()
-		if loot_code[0] == "C":
+		if loot_code[0] == "A":
 			Global.add_to_deck(loot_code.right(3))
 		else:
 			player.equipment_to_stats(loot_code)
@@ -66,7 +69,8 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 func _on_mouse_entered():
 	# display textbox with information
 	if arena.current_phase == arena.Phase.LOOTING:
-		arena.tooltip.change_text(Global.LOOT_DESCRIPTIONS[get_loot_type()])
+		#arena.tooltip.change_text(Global.LOOT_DESCRIPTIONS[get_loot_type()])
+		arena.tooltip.display_loot(loot_code)
 		arena.show_tooltip()
 
 func _on_mouse_exited():

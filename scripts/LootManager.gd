@@ -1,52 +1,55 @@
 extends Node
 
 # Define constants for different types of equipment
-enum EquipmentCategory { CARD, HELM, TORSO, WEAPON, BOOTS, GLOVES }
-enum ItemMaterial { ARCANE, LEATHER, METAL }
-enum CardType { MAGIC, ATTACK, DEFENSE, UTILITY, SPAWN }
-enum ItemRarity { WORN, FINE, EXCEPTIONAL }
-enum ItemTier { COMMON, RARE, MAGIC }
+enum EquipmentCategory { A,B,C,D,E,F }
+enum ItemMaterial { A,B,C }
+enum CardType { A,B,C,D,E,F }
+enum ItemRarity { A,B,C,D }
+enum ItemTier { A,B,C,D }
 
 # Define the drop rates for different categories
-var loot_drop_rate = 0.7  # 60% chance of dropping equipment/card
+var loot_drop_rate = 0.85  # 85% chance of dropping equipment/card
 var category_drop_rates = {
 	# 50/50 for equipment or card
-	EquipmentCategory.CARD: 0.75,	# new card
-	EquipmentCategory.HELM: 0.25,	# health
-	EquipmentCategory.TORSO: 0.00,	# armor_class
-	EquipmentCategory.WEAPON: 0.00,	# damage
-	EquipmentCategory.BOOTS: 0.00,	# speed
-	EquipmentCategory.GLOVES: 0.00,	# crit chance or dmg
+	EquipmentCategory.A: 0.1,	# new card
+	EquipmentCategory.B: 0.18,	# helm
+	EquipmentCategory.C: 0.22,	# torso
+	EquipmentCategory.D: 0.20,	# weapon
+	EquipmentCategory.E: 0.16,	# gloves
+	EquipmentCategory.F: 0.14,	# boots
 }
 
 # Define the drop rates for different materials
 var material_drop_rates = {
-	ItemMaterial.ARCANE: 0.33,
-	ItemMaterial.LEATHER: 0.33,
-	ItemMaterial.METAL: 0.34
+	ItemMaterial.A: 0.33,
+	ItemMaterial.B: 0.33,
+	ItemMaterial.C: 0.34,
 }
 
 # Define the drop rates for different card types
 var card_type_drop_rates = {
-	CardType.MAGIC: 0.15,
-	CardType.ATTACK: 0.15,
-	CardType.DEFENSE: 0.15,
-	CardType.UTILITY: 0.15,
-	CardType.SPAWN: 0.4,
+	CardType.A: 0.15,
+	CardType.B: 0.15,
+	CardType.C: 0.15,
+	CardType.D: 0.15,
+	CardType.E: 0.35,
+	CardType.F: 0.05,
 }
 
 # Define the drop rates for item rarity
 var rarity_drop_rates = {
-	ItemRarity.WORN: 0.5,
-	ItemRarity.FINE: 0.35,
-	ItemRarity.EXCEPTIONAL: 0.15
+	ItemRarity.A: 0.75,
+	ItemRarity.B: 0.20,
+	ItemRarity.C: 0.045,
+	ItemRarity.D: 0.005,
 }
 
 # Define the drop rates for item tier
 var tier_drop_rates = {
-	ItemTier.COMMON: 0.6,
-	ItemTier.RARE: 0.3,
-	ItemTier.MAGIC: 0.1
+	ItemTier.A: 0.6,
+	ItemTier.B: 0.3,
+	ItemTier.C: 0.09,
+	ItemTier.D: 0.01
 }
 
 # Main function to generate loot
@@ -55,17 +58,17 @@ func generate_loot() -> String:
 		return ""  # No loot dropped
 	
 	# Determine the category of equipment
-	var loot_code = str(EquipmentCategory.keys()[choose_category()])[0]
+	var loot_code = str(EquipmentCategory.keys()[choose_category()])
 	
 	# pick card_type if card or material if equipment
-	if loot_code[0] == "C":
-		loot_code += str(CardType.keys()[choose_card_type()])[0]
+	if loot_code[0] == "A":
+		loot_code += str(CardType.keys()[choose_card_type()])
 	else:
-		loot_code += str(ItemMaterial.keys()[choose_material()])[0]
+		loot_code += str(ItemMaterial.keys()[choose_material()])
 	
 	# Determine the rarity and tier of the item
-	loot_code += str(ItemRarity.keys()[choose_rarity()])[0]
-	loot_code += str(ItemTier.keys()[choose_tier()])[0]
+	loot_code += str(ItemRarity.keys()[choose_rarity()])
+	loot_code += str(ItemTier.keys()[choose_tier()])
 
 	return loot_code
 

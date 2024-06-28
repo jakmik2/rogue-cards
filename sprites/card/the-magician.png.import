@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k5g5jw6m2cnq"
-path="res://.godot/imported/attack.png-3f3632e5167bb86da6b69207474a412c.ctex"
+uid="uid://djag5j6vlni7d"
+path="res://.godot/imported/the-magician.png-f2caa4abadd35af1c06253dfa10def95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/card/attack.png"
-dest_files=["res://.godot/imported/attack.png-3f3632e5167bb86da6b69207474a412c.ctex"]
+source_file="res://sprites/card/the-magician.png"
+dest_files=["res://.godot/imported/the-magician.png-f2caa4abadd35af1c06253dfa10def95.ctex"]
 
 [params]
 
