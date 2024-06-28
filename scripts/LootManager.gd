@@ -12,11 +12,11 @@ var loot_drop_rate = 0.7  # 60% chance of dropping equipment/card
 var category_drop_rates = {
 	# 50/50 for equipment or card
 	EquipmentCategory.A: 0.75,	# new card
-	EquipmentCategory.B: 0.25,	# health
-	EquipmentCategory.C: 0.00,	# armor_class
-	EquipmentCategory.D: 0.00,	# damage
-	EquipmentCategory.E: 0.00,	# speed
-	EquipmentCategory.F: 0.00,	# crit chance or dmg
+	EquipmentCategory.B: 0.25,	# helm
+	EquipmentCategory.C: 0.00,	# torso
+	EquipmentCategory.D: 0.00,	# weapon
+	EquipmentCategory.E: 0.00,	# boots
+	EquipmentCategory.F: 0.00,	# gloves
 }
 
 # Define the drop rates for different materials
