@@ -1,7 +1,6 @@
 class_name Player extends BaseEntity
 
-var deck : Array[String]
-var equipment_modifiers : Dictionary
+var deck : Array[Card]
 
 # placeholder/reminder for future use
 # TODO add equipment sprite to character
@@ -30,10 +29,11 @@ func kill() -> void:
 	
 	get_tree().change_scene_to_file("res://scenes/Arena.tscn")
 
-func add_to_deck(card) -> void:
-	print(card)
-	deck.append(card)
-	print(deck)
+func add_to_deck(card_code : String) -> void:
+	var card := Card.new_card(card_code)
+	add_child(card)
+	Global.current_player_deck.append(card.duplicate())
+	card.queue_free()
 
 func equipment_to_stats(equipment_code) -> void:
 	# liquify equipment, utilize multiple Global dictionaries
@@ -45,9 +45,6 @@ func equipment_to_stats(equipment_code) -> void:
 		# mult by (tier + rarity + 1)
 		(Global.mods[equipment_code[2]] + Global.mods[equipment_code[2]] + 1)
 	)
-
-func deck_to_global() -> void:
-	Global.current_player_deck = deck
 
 func rand_pick_stat(equipment_category, modifier=10) -> String:
 	# randomly pick from primary and secondary stats

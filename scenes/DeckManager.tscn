@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://d4e86hgjbwird"]
+
+[ext_resource type="Script" path="res://scripts/DeckManager.gd" id="1_5jxd7"]
+[ext_resource type="PackedScene" uid="uid://dwsljk6mc13qo" path="res://scenes/UI/PauseMenu.tscn" id="2_b11fc"]
+[ext_resource type="Texture2D" uid="uid://byivuws2x3nns" path="res://sprites/deck-pressed.png" id="3_0ktld"]
+[ext_resource type="Texture2D" uid="uid://d2cioayecqfr8" path="res://sprites/deck.png" id="3_dtg4p"]
+[ext_resource type="Texture2D" uid="uid://b7youjjmllyg3" path="res://sprites/deck-hover.png" id="4_mygtj"]
+[ext_resource type="Texture2D" uid="uid://cetgkfctwomtq" path="res://sprites/arrow.png" id="7_re8vd"]
+[ext_resource type="Texture2D" uid="uid://60pvedwbrpa4" path="res://sprites/arrow-pressed.png" id="8_4e7lf"]
+[ext_resource type="Texture2D" uid="uid://7spv6u2q0sjv" path="res://sprites/arrow-hover.png" id="9_u3hve"]
+
+[node name="DeckManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5jxd7")
+
+[node name="Backing" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.533333, 0.294118, 0.168627, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Backing"]
+layout_mode = 0
+offset_left = 224.0
+offset_right = 288.0
+offset_bottom = 540.0
+color = Color(0.376471, 0.172549, 0.172549, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Backing"]
+layout_mode = 0
+offset_left = 448.0
+offset_right = 512.0
+offset_bottom = 540.0
+color = Color(0.376471, 0.172549, 0.172549, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Backing"]
+layout_mode = 0
+offset_left = 672.0
+offset_right = 736.0
+offset_bottom = 540.0
+color = Color(0.376471, 0.172549, 0.172549, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Backing"]
+layout_mode = 0
+offset_left = 896.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.376471, 0.172549, 0.172549, 1)
+
+[node name="Description" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 312.0
+color = Color(0.752941, 0.580392, 0.45098, 0.533333)
+
+[node name="Textbox" type="RichTextLabel" parent="Description"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 200.0
+offset_bottom = 304.0
+text = "Go get some cards you fucking freak."
+
+[node name="DeckDisplay" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 8.0
+offset_right = 888.0
+offset_bottom = 536.0
+color = Color(0.135012, 0.135012, 0.135012, 0.32549)
+
+[node name="CardHolder" type="GridContainer" parent="DeckDisplay"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 42.0
+scale = Vector2(10, 10)
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 17
+columns = 3
+
+[node name="Deck" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 48.0
+offset_bottom = 341.0
+scale = Vector2(10, 10)
+texture_normal = ExtResource("3_dtg4p")
+texture_pressed = ExtResource("3_0ktld")
+texture_hover = ExtResource("4_mygtj")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("2_b11fc")]
+process_mode = 2
+
+[node name="RightArrow" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 437.0
+offset_right = 231.0
+offset_bottom = 447.0
+scale = Vector2(6.99999, 7)
+texture_normal = ExtResource("7_re8vd")
+texture_pressed = ExtResource("8_4e7lf")
+texture_hover = ExtResource("9_u3hve")
+
+[node name="LeftArrow" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 356.0
+offset_right = 301.0
+offset_bottom = 366.0
+scale = Vector2(-7, 7)
+texture_normal = ExtResource("7_re8vd")
+texture_pressed = ExtResource("8_4e7lf")
+texture_hover = ExtResource("9_u3hve")
+
+[connection signal="pressed" from="Deck" to="." method="_on_overworld_pressed"]
+[connection signal="pressed" from="RightArrow" to="." method="_on_right_arrow_pressed"]
+[connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]

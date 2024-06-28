@@ -90,10 +90,10 @@ var TIER_COLORS = {
 var stat_lookup = {
 	# PLAYER
 	"Player" : {
-		"health"		: 30,
+		"health"		: 50,
 		"armor_class"	: 0,
 		"damage"		: 10,
-		"speed"			: 11,
+		"speed"			: 10,
 		"crit_chance"	: 0,
 		"crit_damage"	: 5,
 	},
@@ -109,7 +109,7 @@ var stat_lookup = {
 }
 
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
-var current_player_deck : Array[String] = []
+var current_player_deck : Array[Card] = []
 
 var current_overworld_level = 0
 var current_level_name : String
