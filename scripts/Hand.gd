@@ -104,6 +104,8 @@ func hover(new_idx):
 	await get_tree().process_frame
 
 func finish_hand():
+	for card in children:
+		card.disabled = true
 	# Return what remains in hand to deck
 	camera.center_arena()
 	played = true

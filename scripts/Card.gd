@@ -6,7 +6,7 @@ class_name Card extends Area2D
 
 var hand: Hand
 var idx
-
+var disabled = false
 var hovering = false
 var selected = false
 
@@ -19,6 +19,8 @@ func _ready():
 	sprite.texture = load("res://sprites/card/" + Global.CARD_TYPE[code[0]] + ".png")
 
 func _input(event):
+	if disabled:
+		return
 	if hovering and Input.is_action_just_pressed("click") && !selected:
 		selected = true
 		hand.play_card(idx)
@@ -30,11 +32,13 @@ func _input(event):
 		hand.reactivate()
 
 func _on_mouse_entered():
-	if !hovering:
+	if !hovering && !disabled:
 		hovering = true
 		hand.hover(idx)
 
 func _on_mouse_exited():
+	if disabled:
+		return
 	hovering = false
 	var dif = get_global_mouse_position() - global_position
 	if dif.x > 50 && dif.y < 60 && dif.y > -60:
