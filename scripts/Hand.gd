@@ -52,6 +52,9 @@ func sort_card_distance() -> Array[Vector2]:
 	return outlist
 
 func play_card(idx):
+	# TODO: Move if able to play more than one card
+	for card in children:
+		card.disabled = true
 	# remove card from hand
 	hand.pop_at(idx)
 	deactivate = true
