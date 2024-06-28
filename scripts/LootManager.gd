@@ -68,7 +68,7 @@ func generate_loot() -> String:
 	# Determine the rarity and tier of the item
 	loot_code += str(ItemRarity.keys()[choose_rarity()])
 	loot_code += str(ItemTier.keys()[choose_tier()])
-	print(loot_code)
+
 	return loot_code
 
 # Helper function to choose an equipment category based on predefined drop rates

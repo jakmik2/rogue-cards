@@ -26,4 +26,5 @@ offset_right = 400.0
 offset_bottom = 104.0
 mouse_filter = 2
 theme = SubResource("Theme_c3lpe")
+bbcode_enabled = true
 text = "Greatly Increases Enemy Health and Damage"

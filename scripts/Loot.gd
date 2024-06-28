@@ -7,7 +7,6 @@ var player
 
 # 4 letter code (designed for expansion) that determines type of loot
 var loot_code
-
 var clicked = false
 
 
@@ -16,6 +15,7 @@ func _ready():
 	player = arena.get_node("Player")
 
 func spawn() -> bool:
+	# create loot code
 	loot_code = LootManager.generate_loot()
 	
 	# set the sprite if applicable
@@ -35,7 +35,7 @@ func set_loot_sprite():
 			"equipment/" + Global.EQUIPMENT_CATEGORY[loot_code[0]] + \
 			"-" + Global.ITEM_MATERIAL[loot_code[1]] + ".png"
 		)
-	print(sprite_path)
+	
 	# set texture
 	get_node("Sprite").texture = load(sprite_path)
 
@@ -66,7 +66,8 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 func _on_mouse_entered():
 	# display textbox with information
 	if arena.current_phase == arena.Phase.LOOTING:
-		arena.tooltip.change_text(Global.LOOT_DESCRIPTIONS[get_loot_type()])
+		#arena.tooltip.change_text(Global.LOOT_DESCRIPTIONS[get_loot_type()])
+		arena.tooltip.display_loot(loot_code)
 		arena.show_tooltip()
 
 func _on_mouse_exited():

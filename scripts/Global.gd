@@ -1,6 +1,5 @@
 extends Node
 
-
 var EQUIPMENT_CATEGORY = {
 	"A" : "card",
 	"B" : "helm",
@@ -38,14 +37,33 @@ var ITEM_TIER = {
 }
 
 
+# enum tier_and_rarity { A, B, C }
+# base stat increase, increased by base tier + rarity + 1
+var BASE_STAT_INCREASE = {
+	"health"		: 10,
+	"armor_class"	: 2,
+	"damage"		: 5,
+	"speed"			: 1,
+	"crit_chance"	: 0.5,
+	"crit_damage"	: 0.5,
+}
+
+var EQUIPMENT_STATS = {
+	"helm" 		: ["health", "damage"],
+	"torso" 	: ["armor_class", "health"],
+	"weapon" 	: ["damage", "crit_chance"],
+	"boots" 	: ["crit_chance", "speed"],
+	"gloves" 	: ["speed", "armor_class"],
+}
+
 var LOOT_DESCRIPTIONS = {
 	# Loot descriptions
 	"tarot" : "Various uses",
-	"strength" : "Buffs AllDamage during fight.",
-	"the-tower" : "Buffs AllArmorClass during fight.",
-	"the-magician" : "Buffs AllCrits during fight.",
-	"the-hermit" : "Buffs AllSpeed during fight.",
-	"helm" : "Permanent Small Buff to Hero.",
+	"strength" : "Buffs All Damage during fight.",
+	"the-tower" : "Buffs All Armor Classes during fight.",
+	"the-magician" : "Buffs All Crits during fight.",
+	"the-hermit" : "Buffs All Speed during fight.",
+	"helm" : "Permanent Buff to Hero.",
 	"the-devil" : "Buffs Monster Tiers if Possible.",
 	"death" : "Greatly Increases Enemy Health and Damage"
 }
@@ -80,7 +98,7 @@ var stat_lookup = {
 	"Skele" : {
 		"health"		: 10,
 		"armor_class"	: 0,
-		"damage"		: 1,
+		"damage"		: 5,
 		"speed"			: 10,
 		"crit_chance"	: 15,
 		"crit_damage"	: 3,
