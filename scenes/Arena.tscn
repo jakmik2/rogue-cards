@@ -65,7 +65,7 @@ text = "Exit"
 [node name="Hand" parent="." instance=ExtResource("4_402kl")]
 position = Vector2(480, 440)
 fixed_hand_width = 500
-hand_size = 4
+hand_size = 10
 
 [connection signal="pressed" from="UI/PauseReturn" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/ExitButton" to="." method="_on_exit_button_pressed"]

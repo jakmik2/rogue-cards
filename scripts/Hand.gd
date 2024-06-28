@@ -6,13 +6,17 @@ class_name Hand extends Node2D
 
 var arena
 var played = false
-var hover_idx
+
+var children
 
 var hand: Array[String]
+
+var variable_max_size
+var partition_size
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	arena = get_parent()
-	print(global_position)
 	
 	hand = Global.draw(hand_size)
 	for idx in hand.size():
@@ -21,43 +25,53 @@ func _ready():
 		card.idx = idx
 		add_child(card)
 	
-	sort_card_distance()
+	children = get_children()
+	
+	variable_max_size = fixed_hand_width + 30 * max((5 - children.size()), 0)
+	partition_size = variable_max_size / (children.size() + 1)
+	
+	var new_positions = sort_card_distance()
+	
+	for c_idx in children.size():
+		children[c_idx].set_position(new_positions[c_idx])
 
-func sort_card_distance():
-	var children = get_children()
-	var variable_max_size = fixed_hand_width + 30 * max((5 - children.size()), 0)
-	var partition_size = fixed_hand_width / (children.size() + 1)
+func sort_card_distance() -> Array[Vector2]:
+	var outlist: Array[Vector2] = []
+	
 	for card_idx in children.size():
-		var card: Card = children[card_idx]
-		card.set_position(Vector2((card_idx + 1) * partition_size - fixed_hand_width / 2, 0))
+		outlist.push_front(Vector2((card_idx + 1) * partition_size - variable_max_size / 2, 0))
+	return outlist
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func hover(new_idx):
+	# Get base positions
+	var all_pos = sort_card_distance()
+	
+	if new_idx >= 0 && new_idx < hand.size():
+		children[new_idx].hovering = true
+		for c_idx in children.size():
+			var card = children[c_idx]
+			if c_idx > new_idx:
+				# Shift left
+				all_pos[c_idx] += Vector2(-13 * children.size(), 0)
+			elif c_idx == new_idx:
+				# Shift hovered card up slightly
+				all_pos[c_idx] += Vector2(0, -5)
+			else:
+				# shift Right
+				all_pos[c_idx] += Vector2(13 * children.size(), 0)
+	else:
+		for card in children:
+			card.hovering = false
+
+	for idx in all_pos.size():
+		var card = children[idx]
+		if card.get_position() != all_pos[idx]:
+			children[idx].set_position(all_pos[idx])
+
+	# Finish frame before new hovers
+	await get_tree().process_frame
+
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_down"):
 		played = true
-
-func set_hover(idx):
-	if hover_idx != idx:
-		unset_hover()
-	
-	hover_idx = idx
-	
-	var children = get_children()
-	
-	for c_idx in children.size():
-		var card = children[c_idx]
-		if c_idx < idx:
-			# Shift left
-			card.translate(Vector2(-30, 0))
-		elif c_idx == idx:
-			card.translate(Vector2(0, -5))
-		elif c_idx > idx:
-			# shift Right
-			card.translate(Vector2(30, 0))
-
-func unset_hover():
-	sort_card_distance()
-	
