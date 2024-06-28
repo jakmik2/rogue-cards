@@ -4,19 +4,19 @@ extends Node
 enum EquipmentCategory { A,B,C,D,E,F }
 enum ItemMaterial { A,B,C }
 enum CardType { A,B,C,D,E,F }
-enum ItemRarity { A,B,C }
-enum ItemTier { A,B,C }
+enum ItemRarity { A,B,C,D }
+enum ItemTier { A,B,C,D }
 
 # Define the drop rates for different categories
-var loot_drop_rate = 0.7  # 60% chance of dropping equipment/card
+var loot_drop_rate = 0.85  # 85% chance of dropping equipment/card
 var category_drop_rates = {
 	# 50/50 for equipment or card
-	EquipmentCategory.A: 0.75,	# new card
-	EquipmentCategory.B: 0.25,	# helm
-	EquipmentCategory.C: 0.00,	# torso
-	EquipmentCategory.D: 0.00,	# weapon
-	EquipmentCategory.E: 0.00,	# boots
-	EquipmentCategory.F: 0.00,	# gloves
+	EquipmentCategory.A: 0.1,	# new card
+	EquipmentCategory.B: 0.18,	# helm
+	EquipmentCategory.C: 0.22,	# torso
+	EquipmentCategory.D: 0.20,	# weapon
+	EquipmentCategory.E: 0.16,	# gloves
+	EquipmentCategory.F: 0.14,	# boots
 }
 
 # Define the drop rates for different materials
@@ -40,14 +40,16 @@ var card_type_drop_rates = {
 var rarity_drop_rates = {
 	ItemRarity.A: 0.75,
 	ItemRarity.B: 0.20,
-	ItemRarity.C: 0.05,
+	ItemRarity.C: 0.045,
+	ItemRarity.D: 0.005,
 }
 
 # Define the drop rates for item tier
 var tier_drop_rates = {
 	ItemTier.A: 0.6,
 	ItemTier.B: 0.3,
-	ItemTier.C: 0.1,
+	ItemTier.C: 0.09,
+	ItemTier.D: 0.01
 }
 
 
@@ -60,7 +62,7 @@ func generate_loot() -> String:
 	var loot_code = str(EquipmentCategory.keys()[choose_category()])
 	
 	# pick card_type if card or material if equipment
-	if loot_code[0] == "C":
+	if loot_code[0] == "A":
 		loot_code += str(CardType.keys()[choose_card_type()])
 	else:
 		loot_code += str(ItemMaterial.keys()[choose_material()])

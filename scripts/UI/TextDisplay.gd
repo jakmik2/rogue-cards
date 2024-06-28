@@ -1,8 +1,6 @@
 extends Control
 
-enum mods { A, B, C }
-
-@onready var backing = $Backing
+@onready var backing : ColorRect = $Backing
 @onready var textbox = $TextBox
 
 
@@ -19,19 +17,24 @@ func _process(_delta):
 	#if mpos.y > get_viewport_rect().size.y /2:
 		#position.y -= backing.size.y - 32
 
-func change_text(new_text):
-	textbox.fit_content = true
-	backing.size = textbox.size + Vector2(16,16)
+func fit():
+	# fit to the content
 	await get_tree().process_frame
+	textbox.fit_content = true
+	backing.size = textbox.size 
+	
+
+func change_text(new_text):
 	textbox.text = new_text
+	fit()
 
 func display_loot(code):
 	# display WORN MAGIC ARCANE WEAPON for equipment
 	# display FINE RARE DEATH for card
 	textbox.text = (
-		"[color="+ Global.TIER_COLORS[mods[code[2]]] +"]" + 
+		"[color="+ Global.TIER_COLORS[Global.mods[code[2]]] +"]" + 
 		Global.ITEM_RARITY[code[2]].capitalize() + "[/color] " + 
-		"[color="+ Global.TIER_COLORS[mods[code[3]]] +"]" + 
+		"[color="+ Global.TIER_COLORS[Global.mods[code[3]]] +"]" + 
 		Global.ITEM_TIER[code[3]].capitalize() + "[/color] "
 	)
 	
@@ -43,5 +46,7 @@ func display_loot(code):
 	
 	textbox.text += Global.EQUIPMENT_CATEGORY[code[0]].capitalize()
 	
-	textbox.fit_content = false
-	textbox.fit_content = true
+	fit()
+
+func overworld_setup():
+	textbox.size.x = 200

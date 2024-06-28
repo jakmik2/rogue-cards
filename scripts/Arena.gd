@@ -44,7 +44,6 @@ var mob_num_to_pos = {
 var enemy_lineup : Array[String]
 
 # utils
-var rng = RandomNumberGenerator.new()
 var paused = false
 var counter: float = 0.0;
 
@@ -113,7 +112,7 @@ func combat_round():
 		var target: BaseEntity = player
 
 		# assign source and target for attack
-		var enemy_idx = rng.randi_range(0, enemies.size() - 1)
+		var enemy_idx = randi_range(0, enemies.size() - 1)
 		if (current_actor == player):
 			source = player
 			target = enemies[enemy_idx]
@@ -183,7 +182,10 @@ func end_looting():
 	delay_timer.wait_time = 0.5
 	delay_timer.start()
 	await delay_timer.timeout
+	# give deck to global
 	player.deck_to_global()
+	Global.current_overworld_level += 1
+	# go back to overworld
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
 
 func hide_tooltip():

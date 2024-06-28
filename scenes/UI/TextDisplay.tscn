@@ -21,9 +21,8 @@ color = Color(0, 0, 0, 1)
 [node name="TextBox" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 8.0
 offset_right = 400.0
-offset_bottom = 104.0
+offset_bottom = 96.0
 mouse_filter = 2
 theme = SubResource("Theme_c3lpe")
 bbcode_enabled = true
