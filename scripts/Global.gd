@@ -109,7 +109,7 @@ var stat_lookup = {
 }
 
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
-var current_player_deck : Array[String] = []
+var current_player_deck : Array[String] = ['AAA', 'BBB', 'CCC']
 
 var current_overworld_level = 0
 var current_level_name : String
