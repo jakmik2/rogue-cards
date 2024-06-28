@@ -93,7 +93,7 @@ var stat_lookup = {
 }
 
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
-var current_player_deck : Array[String] = ['AFC', 'AFC', 'AFC', 'AFC', 'AFC', 'AFC', 'AFC', 'AFC']
+var current_player_deck : Array[String] = []
 
 func draw(n = 5) -> Array[String]:
 	var max_n = min(current_player_deck.size(), n)

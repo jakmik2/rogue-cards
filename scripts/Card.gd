@@ -25,9 +25,9 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	hovering = false
 	var dif = get_global_mouse_position() - global_position
-	if dif.x > 50:
+	if dif.x > 50 && dif.y < 60 && dif.y > -60:
 		hand.hover(idx - 1)
-	elif dif.x < -50:
+	elif dif.x < -50 && dif.y < 60 && dif.y > -60:
 		hand.hover(idx + 1)
 	else:
 		hand.hover(-1)
