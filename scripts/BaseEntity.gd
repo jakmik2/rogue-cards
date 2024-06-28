@@ -16,7 +16,7 @@ var crit_damage
 var status: LifeStatus
 
 # Enums
-enum LifeStatus {ALIVE, DEAD}
+enum LifeStatus { ALIVE, DEAD }
 
 # Util
 var rng = RandomNumberGenerator.new()

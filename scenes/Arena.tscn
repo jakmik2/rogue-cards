@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqivgqmx1twp3"]
+[gd_scene load_steps=5 format=3 uid="uid://bqivgqmx1twp3"]
 
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="1_ag3yt"]
 [ext_resource type="PackedScene" uid="uid://g1f0r1ebadw" path="res://scenes/UI/TextDisplay.tscn" id="2_qw0iy"]
 [ext_resource type="PackedScene" uid="uid://dg6opfstej5al" path="res://scenes/Player.tscn" id="3_xsis2"]
+[ext_resource type="PackedScene" uid="uid://dwsljk6mc13qo" path="res://scenes/UI/PauseMenu.tscn" id="4_cghib"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ag3yt")
@@ -38,28 +39,9 @@ scale = Vector2(1, 1.01909)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="TextDisplay" parent="UI" instance=ExtResource("2_qw0iy")]
+[node name="Tooltip" parent="UI" instance=ExtResource("2_qw0iy")]
 visible = false
 
-[node name="PauseReturn" type="Button" parent="UI"]
-process_mode = 2
-visible = false
-offset_left = 352.0
-offset_top = 152.0
-offset_right = 608.0
-offset_bottom = 280.0
-text = "Continue"
-
-[node name="ExitButton" type="Button" parent="UI"]
-process_mode = 2
-visible = false
-offset_left = 352.0
-offset_top = 296.0
-offset_right = 608.0
-offset_bottom = 424.0
-text = "Exit"
+[node name="PauseMenu" parent="UI" instance=ExtResource("4_cghib")]
 
 [node name="DelayTimer" type="Timer" parent="."]
-
-[connection signal="pressed" from="UI/PauseReturn" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="UI/ExitButton" to="." method="_on_exit_button_pressed"]

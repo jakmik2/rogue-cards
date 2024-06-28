@@ -4,7 +4,7 @@ extends Button
 @export var enemies : Array[String] = ["Skele1", "Skele1", "Skele1"]
 @export var prereqs : Array[Button]
 
-@onready var tooltip = get_owner().get_node("TextDisplay")
+@onready var tooltip = get_owner().get_node("UI/TextDisplay")
 
 var description = ""
 var difficulty = 0

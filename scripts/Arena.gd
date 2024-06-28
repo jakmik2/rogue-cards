@@ -4,13 +4,13 @@ class_name Arena extends Node2D
 var enemies = []
 
 @onready var mobs : Node2D = $Mobs
-@onready var tooltip : Control = $UI/TextDisplay
-@onready var player_character : Player = $Player
+@onready var tooltip : Control = $UI/Tooltip
+@onready var player : Player = $Player
 @onready var loot_backing : ColorRect = $Loot/LootBacking
 
 @onready var delay_timer : Timer = $DelayTimer
-@onready var exit_button : Button = $UI/ExitButton
-@onready var paused_button : Button = $UI/PauseReturn
+
+@onready var pause_menu : Control = $UI/PauseMenu
 
 @onready var mob_template : PackedScene = preload("res://scenes/Mob.tscn")
 
@@ -50,6 +50,10 @@ var counter: float = 0.0;
 
 
 func _ready():
+	# connect signals for pause button and exit button
+	pause_menu.get_node("PauseReturn").pressed.connect(_on_close_button_pressed)
+	pause_menu.get_node("ExitButton").pressed.connect(_on_exit_button_pressed)
+	
 	mobs.hide()
 	loot_backing.hide()
 	enemy_lineup = Global.current_arena_loadout
@@ -71,11 +75,9 @@ func _ready():
 	mobs.show()
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_up"):
-		print("PAUSE ON!")
+	if Input.is_action_just_pressed("ui_pause"):
 		get_tree().paused = true
-		paused_button.show()
-		exit_button.show()
+		pause_menu.show()
 
 func _process(delta):
 	# TODO implement pause
@@ -99,7 +101,7 @@ func combat_round():
 	if (combat_order.is_empty()):
 		# populate combat order (probably a memory nightmare right here)
 		combat_order = enemies.duplicate()
-		combat_order.push_back(player_character)
+		combat_order.push_back(player)
 		
 		# sort combat order
 		combat_order.sort_custom(func(a: BaseEntity, b: BaseEntity): return a.get_speed() > b.get_speed())
@@ -108,12 +110,12 @@ func combat_round():
 		var current_actor: BaseEntity = combat_order[current_turn]
 		
 		var source: BaseEntity = current_actor
-		var target: BaseEntity = player_character
+		var target: BaseEntity = player
 
 		# assign source and target for attack
 		var enemy_idx = rng.randi_range(0, enemies.size() - 1)
-		if (current_actor == player_character):
-			source = player_character
+		if (current_actor == player):
+			source = player
 			target = enemies[enemy_idx]
 		
 		# evaluate attack
@@ -125,11 +127,11 @@ func combat_round():
 				#"%s hit %s for %s, %s at %s" % 
 				#[source.name, target.name, damage, target.name, target.health]
 			#)
-			if (target.health <= 0 && target == player_character):
-				print("Game Over! You lose!")
+			if (target.health <= 0 && target == player):
+				# game over sequence
 				current_state = CombatState.INACTIVE
-				player_character.kill()
-			elif (target.health <= 0 && source == player_character):
+				player.kill()
+			elif (target.health <= 0 && source == player):
 				# remove enemy from list
 				enemies.pop_at(enemy_idx)
 				combat_order.pop_at(combat_order.find(target))
@@ -137,11 +139,15 @@ func combat_round():
 			
 			# check if all combatants have been defeated
 			if (enemies.is_empty()):
-				print("Congrats! You've won!\nCollect Loot to Continue.")
+				# finish combat, move to looting Phase
 				current_state = CombatState.INACTIVE
-				current_phase = Phase.LOOTING
+				
+				# delay to allow for mobs to properly die
+				delay_timer.wait_time = 1.1
 				delay_timer.start()
 				await delay_timer.timeout
+				
+				current_phase = Phase.LOOTING
 				end_combat()
 		else:
 			print("Big miss from %s" % source)
@@ -173,12 +179,12 @@ func end_combat():
 	current_phase = Phase.LOOTING
 
 func end_looting():
-	print("moving along. . .")
-	player_character.deck_to_global()
+	# delay to slow down
+	delay_timer.wait_time = 0.5
+	delay_timer.start()
+	await delay_timer.timeout
+	player.deck_to_global()
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
-
-func toggle_tooltip():
-	tooltip.visible = !tooltip.visible
 
 func hide_tooltip():
 	tooltip.hide()
@@ -187,8 +193,7 @@ func show_tooltip():
 	tooltip.show()
 
 func _on_close_button_pressed():
-	paused_button.hide()
-	exit_button.hide()
+	pause_menu.hide()
 	get_tree().paused = false
 
 func _on_exit_button_pressed():

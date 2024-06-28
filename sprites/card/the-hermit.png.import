@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djag5j6vlni7d"
-path="res://.godot/imported/magic.png-010dbe67ebce69a521970206fb9ac9ba.ctex"
+uid="uid://djsoqvustyd8i"
+path="res://.godot/imported/the-hermit.png-89b48f0de1aa798129aef9fafebc0d8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/card/magic.png"
-dest_files=["res://.godot/imported/magic.png-010dbe67ebce69a521970206fb9ac9ba.ctex"]
+source_file="res://sprites/card/the-hermit.png"
+dest_files=["res://.godot/imported/the-hermit.png-89b48f0de1aa798129aef9fafebc0d8c.ctex"]
 
 [params]
 
