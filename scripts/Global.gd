@@ -92,7 +92,7 @@ var stat_lookup = {
 	"Player" : {
 		"health"		: 30,
 		"armor_class"	: 0,
-		"damage"		: 70,
+		"damage"		: 10,
 		"speed"			: 11,
 		"crit_chance"	: 0,
 		"crit_damage"	: 5,
@@ -101,7 +101,7 @@ var stat_lookup = {
 	"Skele" : {
 		"health"		: 10,
 		"armor_class"	: 0,
-		"damage"		: 5,
+		"damage"		: 3,
 		"speed"			: 10,
 		"crit_chance"	: 15,
 		"crit_damage"	: 3,
