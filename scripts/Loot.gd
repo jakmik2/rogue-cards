@@ -28,11 +28,14 @@ func set_loot_sprite():
 	
 	var sprite_path = "res://sprites/"
 	# determine sprite_path dynamically depending on loot_code
+	print(loot_code)
 	if loot_code[0] == "A":
 		sprite_path += "card/" + Global.CARD_TYPE[loot_code[1]] + ".png"
 	else:
 		sprite_path += (
-			"equipment/" + Global.EQUIPMENT_CATEGORY[loot_code[0]] + \
+			# BIG TODO add equipment sprites for all equipment and uncomment below
+			#"equipment/" + Global.EQUIPMENT_CATEGORY[loot_code[0]] + \
+			"equipment/" + "helm" + \
 			"-" + Global.ITEM_MATERIAL[loot_code[1]] + ".png"
 		)
 	

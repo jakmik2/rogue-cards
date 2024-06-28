@@ -33,12 +33,12 @@ func get_stats(entity_name, monster_tier = 0) -> void:
 	
 	# look up stats in Global dictionary, TODO tier modifiers
 	var entity_stats = Global.stat_lookup[entity_name]
-	health = entity_stats["health"] * ( 1 + monster_tier / 2)
-	armor_class = entity_stats["armor_class"] * ( 1 + monster_tier / 2)
-	damage = entity_stats["damage"] * ( 1 + monster_tier / 2)
-	speed = entity_stats["speed"] * ( 1 + monster_tier / 2)
-	crit_chance = entity_stats["crit_chance"] * ( 1 + monster_tier / 2)
-	crit_damage = entity_stats["crit_damage"] * ( 1 + monster_tier / 2)
+	health = entity_stats["health"] * ( 1 + monster_tier)
+	armor_class = entity_stats["armor_class"] * ( 1 + monster_tier)
+	damage = entity_stats["damage"] * ( 1 + monster_tier)
+	speed = entity_stats["speed"] * ( 1 + monster_tier)
+	crit_chance = entity_stats["crit_chance"] * ( 1 + monster_tier)
+	crit_damage = entity_stats["crit_damage"] * ( 1 + monster_tier)
 
 func get_speed() -> int:
 	return speed

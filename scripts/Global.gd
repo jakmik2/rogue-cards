@@ -5,8 +5,8 @@ var EQUIPMENT_CATEGORY = {
 	"B" : "helm",
 	"C" : "torso",
 	"D" : "weapon",
-	"E" : "boots",
-	"F" : "gloves",
+	"E" : "gloves",
+	"F" : "boots",
 }
 
 var ITEM_MATERIAL = {
@@ -28,16 +28,18 @@ var ITEM_RARITY = {
 	"A" : "worn",
 	"B" : "fine",
 	"C" : "exceptional",
+	"D" : "perfect"
 }
 
 var ITEM_TIER = {
 	"A" : "common",
 	"B" : "rare",
 	"C" : "magic",
+	"D" : "legendary",
 }
 
+enum mods { A, B, C, D, }
 
-# enum tier_and_rarity { A, B, C }
 # base stat increase, increased by base tier + rarity + 1
 var BASE_STAT_INCREASE = {
 	"health"		: 10,
@@ -52,8 +54,8 @@ var EQUIPMENT_STATS = {
 	"helm" 		: ["health", "damage"],
 	"torso" 	: ["armor_class", "health"],
 	"weapon" 	: ["damage", "crit_chance"],
-	"boots" 	: ["crit_chance", "speed"],
-	"gloves" 	: ["speed", "armor_class"],
+	"gloves" 	: ["crit_chance", "speed"],
+	"boots" 	: ["speed", "armor_class"],
 }
 
 var LOOT_DESCRIPTIONS = {
@@ -79,9 +81,10 @@ var TAROT_CARDS = [ # numbered 0 to 21
 
 var TIER_COLORS = {
 	0 : "ffffff",
-	1 : "00ffff",
-	2 : "ffff00",
-	3 : "ff0000",
+	1 : "73bed3",
+	2 : "de9e41",
+	3 : "a53030",
+	4 : "c65197",
 }
 
 var stat_lookup = {
@@ -98,7 +101,7 @@ var stat_lookup = {
 	"Skele" : {
 		"health"		: 10,
 		"armor_class"	: 0,
-		"damage"		: 5,
+		"damage"		: 3,
 		"speed"			: 10,
 		"crit_chance"	: 15,
 		"crit_damage"	: 3,
@@ -107,4 +110,8 @@ var stat_lookup = {
 
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
 var current_player_deck : Array[String] = []
+
+var current_overworld_level = 0
+var current_level_name : String
+
 

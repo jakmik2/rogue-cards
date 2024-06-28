@@ -3,8 +3,6 @@ class_name Player extends BaseEntity
 var deck : Array[String]
 var equipment_modifiers : Dictionary
 
-enum mods { A, B, C }
-
 # placeholder/reminder for future use
 # TODO add equipment sprite to character
 # TODO add ability to add textures to the sprite??
@@ -45,7 +43,7 @@ func equipment_to_stats(equipment_code) -> void:
 		# get base stat increase
 		Global.BASE_STAT_INCREASE[stat_modified] * 
 		# mult by (tier + rarity + 1)
-		(mods[equipment_code[2]] + mods[equipment_code[2]] + 1)
+		(Global.mods[equipment_code[2]] + Global.mods[equipment_code[2]] + 1)
 	)
 
 func deck_to_global() -> void:

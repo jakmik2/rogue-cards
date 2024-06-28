@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cards of Fate"
-run/main_scene="res://scenes/Arena.tscn"
+run/main_scene="res://scenes/Overworld.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
