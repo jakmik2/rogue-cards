@@ -99,8 +99,14 @@ func draw(n = 5) -> Array[String]:
 	var max_n = min(current_player_deck.size(), n)
 	randomize()
 	current_player_deck.shuffle()
-	return current_player_deck.slice(0, max_n)
+	print(current_player_deck)
+	var hand = current_player_deck.slice(0, max_n)
+	current_player_deck = current_player_deck.slice(max_n, current_player_deck.size())
+	print(current_player_deck)
+	return hand
+
+func return_to_deck(hand: Array[String]):
+	current_player_deck.append_array(hand)
 
 func add_to_deck(card_code) -> void:
-	print(card_code)
-	Global.current_player_deck.append(card_code)
+	current_player_deck.append(card_code)
