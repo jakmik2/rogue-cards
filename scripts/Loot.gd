@@ -57,7 +57,7 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 		clicked = true
 		arena.hide_tooltip()
 		if loot_code[0] == "A":
-			player.add_to_deck(loot_code.right(3))
+			Global.add_to_deck(loot_code.right(3))
 		else:
 			player.equipment_to_stats(loot_code)
 		

@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1silk5882td6"]
+
+[ext_resource type="Script" path="res://scripts/ArenaCamera.gd" id="1_5mujo"]
+
+[sub_resource type="Animation" id="Animation_2o6dr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(480, 270)]
+}
+
+[sub_resource type="Animation" id="Animation_265wo"]
+resource_name = "center_arena"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(480, 470), Vector2(480, 270)]
+}
+
+[sub_resource type="Animation" id="Animation_p7dan"]
+resource_name = "center_hand"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(480, 270), Vector2(480, 470)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhfky"]
+_data = {
+"RESET": SubResource("Animation_2o6dr"),
+"center_arena": SubResource("Animation_265wo"),
+"center_hand": SubResource("Animation_p7dan")
+}
+
+[node name="ArenaCamera" type="Camera2D"]
+offset = Vector2(480, 270)
+script = ExtResource("1_5mujo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fhfky")
+}

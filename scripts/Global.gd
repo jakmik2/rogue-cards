@@ -109,9 +109,24 @@ var stat_lookup = {
 }
 
 var current_arena_loadout : Array[String] = ["Skele0", "Skele0", "Skele0"]
-var current_player_deck : Array[String] = []
+var current_player_deck : Array[String] = ['AAA', 'BBB', 'CCC']
 
 var current_overworld_level = 0
 var current_level_name : String
 
 
+func draw(n = 5) -> Array[String]:
+	var max_n = min(current_player_deck.size(), n)
+	randomize()
+	current_player_deck.shuffle()
+	print(current_player_deck)
+	var hand = current_player_deck.slice(0, max_n)
+	current_player_deck = current_player_deck.slice(max_n, current_player_deck.size())
+	print(current_player_deck)
+	return hand
+
+func return_to_deck(hand: Array[String]):
+	current_player_deck.append_array(hand)
+
+func add_to_deck(card_code) -> void:
+	current_player_deck.append(card_code)

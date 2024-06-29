@@ -7,6 +7,7 @@ var enemies = []
 @onready var tooltip : Control = $UI/Tooltip
 @onready var player : Player = $Player
 @onready var loot_backing : ColorRect = $Loot/LootBacking
+@onready var hand: Hand = $Hand
 
 @onready var delay_timer : Timer = $DelayTimer
 
@@ -83,6 +84,9 @@ func _process(delta):
 	if paused:
 		return
 		
+	if !hand.played:
+		return
+	
 	counter += delta
 	# evaluate combat state and turn order
 	# skip if not in combat or if actively resolving a round
@@ -183,7 +187,6 @@ func end_looting():
 	delay_timer.start()
 	await delay_timer.timeout
 	# give deck to global
-	player.deck_to_global()
 	Global.current_overworld_level += 1
 	# go back to overworld
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
