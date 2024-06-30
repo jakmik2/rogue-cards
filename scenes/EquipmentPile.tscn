@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmw0le60rv04r"]
+
+[ext_resource type="Script" path="res://scripts/EquipmentPile.gd" id="1_fwjmx"]
+
+[node name="EquipmentPile" type="StaticBody2D"]
+script = ExtResource("1_fwjmx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-4.99999, 2)
+scale = Vector2(4.2408, 2.40972)
+polygon = PackedVector2Array(-22.7178, -19.9193, -25, -20, -25, 16, 27, 16, 27, -20, 25.1505, -20.3343, 25.1505, 11.6196, -22.7178, 11.6196)
+
+[node name="EquipmentStorage" type="Node2D" parent="."]
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

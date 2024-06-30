@@ -2,6 +2,7 @@ class_name Loot extends Area2D
 
 var arena
 var player
+var equipment_pile
 
 @onready var text_template = "res://scenes/UI/"
 
@@ -13,6 +14,7 @@ var clicked = false
 func _ready():
 	arena = get_parent().get_parent()
 	player = arena.get_node("Player")
+	equipment_pile = arena.get_node("EquipmentPile")
 
 func spawn() -> bool:
 	# create loot code
@@ -60,6 +62,7 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 			Global.add_to_deck(loot_code.right(3))
 		else:
 			player.equipment_to_stats(loot_code)
+			equipment_pile.add_equipment(loot_code)
 		
 		if get_parent().get_child_count() == 2:
 			arena.current_phase = arena.Phase.FINISHED
