@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqivgqmx1twp3"]
+[gd_scene load_steps=8 format=3 uid="uid://bqivgqmx1twp3"]
 
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="1_ag3yt"]
 [ext_resource type="PackedScene" uid="uid://g1f0r1ebadw" path="res://scenes/UI/TextDisplay.tscn" id="2_qw0iy"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://i65m2fwwgr5h" path="res://scenes/Hand.tscn" id="4_402kl"]
 [ext_resource type="PackedScene" uid="uid://dwsljk6mc13qo" path="res://scenes/UI/PauseMenu.tscn" id="4_cghib"]
 [ext_resource type="PackedScene" uid="uid://d1silk5882td6" path="res://scenes/ArenaCamera.tscn" id="5_726ru"]
+[ext_resource type="PackedScene" uid="uid://bmw0le60rv04r" path="res://scenes/EquipmentPile.tscn" id="7_bvtbw"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ag3yt")
@@ -24,6 +25,9 @@ offset_right = 960.0
 offset_bottom = 741.0
 mouse_filter = 2
 color = Color(0.25098, 0.152941, 0.317647, 1)
+
+[node name="EquipmentPile" parent="." instance=ExtResource("7_bvtbw")]
+position = Vector2(264, 155)
 
 [node name="Player" parent="." instance=ExtResource("3_xsis2")]
 position = Vector2(192, 353.256)
