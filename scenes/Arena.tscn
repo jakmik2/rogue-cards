@@ -27,7 +27,7 @@ mouse_filter = 2
 color = Color(0.25098, 0.152941, 0.317647, 1)
 
 [node name="EquipmentPile" parent="." instance=ExtResource("7_bvtbw")]
-position = Vector2(136, 170)
+position = Vector2(264, 155)
 
 [node name="Player" parent="." instance=ExtResource("3_xsis2")]
 position = Vector2(192, 353.256)

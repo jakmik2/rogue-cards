@@ -6,9 +6,9 @@
 script = ExtResource("1_fwjmx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-4.99999, 2)
-scale = Vector2(4.2408, 2.40972)
-polygon = PackedVector2Array(-22.7178, -19.9193, -25, -20, -25, 16, 27, 16, 27, -20, 25.1505, -20.3343, 25.1505, 11.6196, -22.7178, 11.6196)
+position = Vector2(-32.6959, -107.479)
+scale = Vector2(5.20833, 6.27532)
+polygon = PackedVector2Array(-39.8024, -19.0462, -41.9732, -19.0893, -41.9732, 16.5994, 54.4708, 16.5994, 54.4708, -20.7493, 52.1128, -20.7493, 52.1656, 14.8963, -39.8024, 14.5776)
 
 [node name="EquipmentStorage" type="Node2D" parent="."]
 
