@@ -13,7 +13,19 @@ var equipment_sprite
 func _ready():
 	# override BaseEntity values
 	get_stats("Player")
+	debug_stats()
 	deck = Global.current_player_deck
+
+func load_temp():
+	var temp_states = Global.temp_modifier
+	print("Loading Temp stats", temp_states)
+	health += temp_states["health"]
+	armor_class += temp_states["armor_class"]
+	damage += temp_states["damage"]
+	speed += temp_states["speed"]
+	crit_chance += temp_states["crit_chance"]
+	crit_damage += temp_states["crit_damage"]
+	debug_stats()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func attempt_attack() -> int:

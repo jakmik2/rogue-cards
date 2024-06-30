@@ -72,7 +72,7 @@ func reactivate():
 	
 	deactivate = false
 	hover(-1)
-	
+	arena.get_node("Player").load_temp()
 	finish_hand()
 
 func hover(new_idx):

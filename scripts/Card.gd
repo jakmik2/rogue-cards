@@ -14,6 +14,8 @@ var card_type
 var description
 var tier
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
 	hand = get_parent()
 	sprite.texture = load("res://sprites/card/" + Global.CARD_TYPE[code[0]] + ".png")
@@ -48,6 +50,48 @@ func _on_mouse_exited():
 	else:
 		hand.hover(-1)
 
+var temp_modifier = {
+	"health"		: 0,
+	"armor_class"	: 0,
+	"damage"		: 0,
+	"speed"			: 0,
+	"crit_chance"	: 0,
+	"crit_damage"	: 0,
+}
+
 func card_method():
-	# TODO: Implement card use
-	print("I've used this card!")
+	# Switch on card effects
+	print("Temp upgrade to ", Global.CARD_TYPE[code[0]])
+	var stat = '';
+	match Global.CARD_TYPE[code[0]]:
+		"the-magician":
+			var rand_i = rng.randi_range(0,1)
+			if rand_i == 1:
+				stat = 'crit_chance'
+			else:
+				stat = 'crit_damage'
+		"strength":
+			stat = 'damage'
+		"the-tower":
+			stat = 'armor_class'
+		"the-hermit":
+			stat = 'speed'
+		"the-devil":
+			# TODO: Implement monster effect
+			pass
+		"death":
+			# TODO: Implement monster effect
+			pass
+		_:
+			pass
+	
+	if stat != '':
+		Global.temp_modifier[stat] += (
+			# get base stat increase
+			Global.BASE_STAT_INCREASE[stat] * 
+			# mult by (tier + rarity + 1) * 1.5
+			# 1.5 times more powerful as it's temp
+			(Global.mods[code[1]] + Global.mods[code[1]] + 3) * 1.5
+		)
+
+	print("Current temp mod after impact: ", Global.temp_modifier)

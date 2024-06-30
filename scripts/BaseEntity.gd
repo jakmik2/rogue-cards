@@ -91,3 +91,12 @@ func get_damage_number() -> DamageNumber:
 		new_damage_number.tree_exiting.connect(
 			func():damage_number_pool.append(new_damage_number))
 		return new_damage_number
+
+func debug_stats():
+	print(health)
+	print(armor_class)
+	print(damage)
+	print(speed)
+	print(crit_chance)
+	print(crit_damage)
+	

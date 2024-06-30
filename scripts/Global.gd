@@ -87,6 +87,19 @@ var TIER_COLORS = {
 	4 : "c65197",
 }
 
+func reset_temp_mods():
+	for key in temp_modifier:
+		temp_modifier[key] = 0
+
+var temp_modifier = {
+	"health"		: 0,
+	"armor_class"	: 0,
+	"damage"		: 0,
+	"speed"			: 0,
+	"crit_chance"	: 0,
+	"crit_damage"	: 0,
+}
+
 var stat_lookup = {
 	# PLAYER
 	"Player" : {

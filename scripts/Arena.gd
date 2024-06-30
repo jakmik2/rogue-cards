@@ -188,6 +188,8 @@ func end_looting():
 	await delay_timer.timeout
 	# give deck to global
 	Global.current_overworld_level += 1
+	# Reset Temp stats
+	Global.reset_temp_mods()
 	# go back to overworld
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
 
