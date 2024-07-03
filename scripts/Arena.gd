@@ -190,7 +190,7 @@ func end_looting():
 	await delay_timer.timeout
 	
 	# go back to overworld, increment overall level
-	#Global.current_overworld_level += 1
+	Global.current_overworld_level += 1
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
 
 func hide_tooltip():

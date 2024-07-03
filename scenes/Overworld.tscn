@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/Overworld.gd" id="1_lsmee"]
 [ext_resource type="PackedScene" uid="uid://g1f0r1ebadw" path="res://scenes/UI/TextDisplay.tscn" id="1_x8wxk"]
-[ext_resource type="Texture2D" uid="uid://d2cioayecqfr8" path="res://sprites/deck.png" id="3_4sj42"]
+[ext_resource type="Texture2D" path="res://sprites/deck.png" id="3_4sj42"]
 [ext_resource type="PackedScene" uid="uid://chore4el6n68" path="res://scenes/Level.tscn" id="3_fp77y"]
 [ext_resource type="PackedScene" uid="uid://dwsljk6mc13qo" path="res://scenes/UI/PauseMenu.tscn" id="4_4yow4"]
-[ext_resource type="Texture2D" uid="uid://byivuws2x3nns" path="res://sprites/deck-pressed.png" id="4_i6g1f"]
-[ext_resource type="Texture2D" uid="uid://b7youjjmllyg3" path="res://sprites/deck-hover.png" id="4_j8ijm"]
+[ext_resource type="Texture2D" path="res://sprites/deck-pressed.png" id="4_i6g1f"]
+[ext_resource type="Texture2D" path="res://sprites/deck-hover.png" id="4_j8ijm"]
 
 [sub_resource type="Theme" id="Theme_i1s4k"]
 default_font_size = 64

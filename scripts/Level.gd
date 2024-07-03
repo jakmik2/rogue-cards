@@ -50,6 +50,6 @@ func _on_mouse_exited():
 func _on_pressed():
 	if clickable:
 		# select level, transfer level data to Global.current_arena_loadout then load arena scene
-		#Global.current_level_name = name
+		Global.current_level_name = name
 		Global.current_arena_loadout = enemies
 		get_tree().change_scene_to_file("res://scenes/Arena.tscn")
