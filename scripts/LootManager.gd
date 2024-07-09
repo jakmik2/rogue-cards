@@ -52,7 +52,6 @@ var tier_drop_rates = {
 	ItemTier.D: 0.01
 }
 
-
 # Main function to generate loot
 func generate_loot() -> String:
 	if randf() > loot_drop_rate:

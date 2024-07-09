@@ -47,6 +47,7 @@ _data = {
 [node name="Card" type="Area2D"]
 scale = Vector2(10, 10)
 script = ExtResource("1_b0rvh")
+code = null
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_62rrj")

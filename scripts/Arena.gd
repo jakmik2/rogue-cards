@@ -7,6 +7,7 @@ var enemies = []
 @onready var tooltip : Control = $UI/Tooltip
 @onready var player : Player = $Player
 @onready var loot_backing : ColorRect = $Loot/LootBacking
+@onready var hand: Hand = $Hand
 
 @onready var delay_timer : Timer = $DelayTimer
 
@@ -90,7 +91,8 @@ func _process(_delta):
 	if (
 		current_state == CombatState.INACTIVE and 
 		current_phase == Phase.COMBAT and 
-		!enemies.is_empty()
+		!enemies.is_empty() and
+    hand.played
 	):
 		# introduce randomness to break ties
 		combatants.shuffle()
@@ -98,7 +100,7 @@ func _process(_delta):
 		# evaluate current turn counters
 		for combatant in combatants:
 			combatant_counter.append(combatant.turn_counter)
-		
+    
 		if combatant_counter.max() < 100:
 			# track counters through an array 
 			# iterate through the number of combatants, increment their counters with their speed
