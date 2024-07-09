@@ -30,7 +30,7 @@ func stock_page() -> void:
 	for child in card_holder.get_children():
 		child.queue_free()
 	
-	for i in range(9):
+	for i in 9:
 		if i+current_page*9 < len(Global.current_player_deck):
 			var card_dupe = Card.new_card(Global.current_player_deck[i+current_page*9])
 			card_holder.add_child(card_dupe)
@@ -41,7 +41,6 @@ func stock_page() -> void:
 					card_dupe.position = Vector2(96+(i-3)*200, 256)
 				6, 7, 8:
 					card_dupe.position = Vector2(96+(i-6)*200, 424)
-			print(card_dupe.position)
 		else:
 			return
 

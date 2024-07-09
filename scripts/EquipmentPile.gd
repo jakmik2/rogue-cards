@@ -17,8 +17,8 @@ func _ready():
 func add_equipment(code):
 	pile.push_front(code)
 	# Spawn it in a random position above the container
-	var rand_x = rng.randi_range(-70, 70)
-	var rand_y = rng.randi_range(-60, -120)
+	var rand_x = rng.randi_range(-20, 20)
+	var rand_y = rng.randi_range(-100, -300)
 	var rand_rot = rng.randf_range(-PI/2, PI/2)
 	
 	var equipment_item: EquipmentItem = equipment_item_prefab.instantiate()
@@ -29,7 +29,6 @@ func add_equipment(code):
 	equipment_item.rotate(rand_rot)
 	
 	equipment_item.position = Vector2(rand_x, rand_y)
-
 
 func _on_tree_exiting():
 	Global.packed_equipment_pile = pile

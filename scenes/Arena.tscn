@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://i65m2fwwgr5h" path="res://scenes/Hand.tscn" id="4_402kl"]
 [ext_resource type="PackedScene" uid="uid://dwsljk6mc13qo" path="res://scenes/UI/PauseMenu.tscn" id="4_cghib"]
 [ext_resource type="PackedScene" uid="uid://d1silk5882td6" path="res://scenes/ArenaCamera.tscn" id="5_726ru"]
-[ext_resource type="PackedScene" uid="uid://bmw0le60rv04r" path="res://scenes/EquipmentPile.tscn" id="7_bvtbw"]
+[ext_resource type="PackedScene" uid="uid://bkpa0xrgko1a1" path="res://scenes/EquipmentPile.tscn" id="7_bvtbw"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_ag3yt")
@@ -27,7 +27,7 @@ mouse_filter = 2
 color = Color(0.25098, 0.152941, 0.317647, 1)
 
 [node name="EquipmentPile" parent="." instance=ExtResource("7_bvtbw")]
-position = Vector2(264, 155)
+position = Vector2(136, 320)
 
 [node name="Player" parent="." instance=ExtResource("3_xsis2")]
 position = Vector2(192, 353.256)
@@ -57,4 +57,3 @@ visible = false
 [node name="Hand" parent="." instance=ExtResource("4_402kl")]
 position = Vector2(480, 640)
 fixed_hand_width = 500
-hand_size = 10

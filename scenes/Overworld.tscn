@@ -20,7 +20,22 @@ script = ExtResource("1_lsmee")
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
-color = Color(0.442052, 0.457821, 0.798686, 1)
+color = Color(0.407843, 0.415686, 0.74902, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 1.0
+offset_right = 959.0
+offset_bottom = 541.0
+color = Color(0.266667, 0.27451, 0.521569, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 736.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.168627, 0.14902, 0.305882, 1)
 
 [node name="Levels" type="Control" parent="."]
 anchors_preset = 0

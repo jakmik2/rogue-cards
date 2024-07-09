@@ -31,7 +31,6 @@ var combatants = []
 var current_state = CombatState.INACTIVE
 var current_phase = Phase.PREP
 var current_turn = 0
-var round_tracker = Round.INACTIVE
 
 var mob_num_to_pos = {
 	0 : Vector2(448,431.757),
@@ -60,7 +59,7 @@ func _ready():
 	# turn off tooltip
 	hide_tooltip()
 	
-	for i in range(len(enemy_lineup)):
+	for i in len(enemy_lineup):
 		var new_mob = mob_template.instantiate()
 		new_mob.species = enemy_lineup[i].left(5)
 		new_mob.tier = enemy_lineup[i].right(1).to_int()
@@ -79,20 +78,21 @@ func _ready():
 		combatants.push_back(player)
 	
 	mobs.show()
-	await get_tree().process_frame
-	current_phase = Phase.COMBAT
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_pause"):
 		get_tree().paused = true
 		pause_menu.show()
+	elif Input.is_action_just_pressed("take_all") and current_phase == Phase.LOOTING:
+		for i in range(1, $Loot.get_child_count()):
+			$Loot.get_child(i).generic_loot()
+		end_looting()
 
 func _process(_delta):
 	if (
 		current_state == CombatState.INACTIVE and 
 		current_phase == Phase.COMBAT and 
-		!enemies.is_empty() and
-    hand.played
+		!enemies.is_empty()
 	):
 		# introduce randomness to break ties
 		combatants.shuffle()
@@ -100,7 +100,7 @@ func _process(_delta):
 		# evaluate current turn counters
 		for combatant in combatants:
 			combatant_counter.append(combatant.turn_counter)
-    
+	
 		if combatant_counter.max() < 100:
 			# track counters through an array 
 			# iterate through the number of combatants, increment their counters with their speed
@@ -159,9 +159,11 @@ func combat_round():
 				end_combat()
 		else:
 			# missed shot due to AC
-			#print("Big Miss from %s" % source)
-			pass
+			print("Big Miss from %s" % source)
 	current_state = CombatState.INACTIVE
+
+func end_prep():
+	current_phase = Phase.COMBAT
 
 func end_combat():
 	var loot_counter = 1
@@ -186,6 +188,7 @@ func end_combat():
 	current_phase = Phase.LOOTING
 
 func end_looting():
+	current_phase = Phase.FINISHED
 	# delay to slow down
 	delay_timer.wait_time = 0.5
 	delay_timer.start()
@@ -193,9 +196,13 @@ func end_looting():
 	
 	# go back to overworld, increment overall level
 	Global.current_overworld_level += 1
+	# reset overworld
 	if Global.current_overworld_level == 5:
 		Global.current_overworld_level = 0
 		Global.current_level_name = ""
+	
+	await get_tree().process_frame
+	
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
 
 func hide_tooltip():

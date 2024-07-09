@@ -12,8 +12,6 @@ var equipment_sprite
 func _ready():
 	# override BaseEntity values
 	get_stats("Player")
-	for code in Global.current_player_deck:
-		deck.append(Card.new_card(code))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func attempt_attack() -> int:
@@ -29,9 +27,6 @@ func kill() -> void:
 	await new_timer.timeout
 	
 	get_tree().change_scene_to_file("res://scenes/Arena.tscn")
-
-func add_to_deck(card_code : String) -> void:
-	Global.current_player_deck.append(card_code)
 
 func equipment_to_stats(equipment_code) -> void:
 	# liquify equipment, utilize multiple Global dictionaries

@@ -49,6 +49,19 @@ func get_loot_type():
 	else:
 		return Global.EQUIPMENT_CATEGORY[loot_code[0]]
 
+func generic_loot():
+	arena.hide_tooltip()
+	if loot_code[0] == "A":
+		Global.add_to_deck(loot_code.right(3))
+	else:
+		player.equipment_to_stats(loot_code)
+		equipment_pile.add_equipment(loot_code)
+	
+	if get_parent().get_child_count() == 2:
+		arena.current_phase = arena.Phase.FINISHED
+		arena.end_looting()
+	queue_free()
+
 func _on_mouse_click(_viewport, _event, _shape_idx):
 	if (
 		Input.is_action_just_pressed("ui_select") and 
@@ -56,17 +69,7 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 		not clicked
 	):
 		clicked = true
-		arena.hide_tooltip()
-		if loot_code[0] == "A":
-			Global.add_to_deck(loot_code.right(3))
-		else:
-			player.equipment_to_stats(loot_code)
-			equipment_pile.add_equipment(loot_code)
-		
-		if get_parent().get_child_count() == 2:
-			arena.current_phase = arena.Phase.FINISHED
-			arena.end_looting()
-		queue_free()
+		generic_loot()
 
 func _on_mouse_entered():
 	# display textbox with information
