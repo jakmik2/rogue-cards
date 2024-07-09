@@ -11,12 +11,12 @@ enum ItemTier { A,B,C,D }
 var loot_drop_rate = 0.85  # 85% chance of dropping equipment/card
 var category_drop_rates = {
 	# 50/50 for equipment or card
-	EquipmentCategory.A: 0.1,	# new card
-	EquipmentCategory.B: 0.18,	# helm
-	EquipmentCategory.C: 0.22,	# torso
-	EquipmentCategory.D: 0.20,	# weapon
-	EquipmentCategory.E: 0.16,	# gloves
-	EquipmentCategory.F: 0.14,	# boots
+	EquipmentCategory.A: 0.9,	# new card
+	EquipmentCategory.B: 0.1,	# helm
+	EquipmentCategory.C: 0.0,	# torso
+	EquipmentCategory.D: 0.0,	# weapon
+	EquipmentCategory.E: 0.0,	# gloves
+	EquipmentCategory.F: 0.0,	# boots
 }
 
 # Define the drop rates for different materials

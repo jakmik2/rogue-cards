@@ -24,19 +24,19 @@ var enemies = []
 enum CombatState {ACTIVE, INACTIVE}
 enum Round {ACTIVE, INACTIVE}
 enum EndCombat {ACTIVE, INACTIVE}
-enum Phase {COMBAT, LOOTING, FINISHED}
+enum Phase {PREP, COMBAT, LOOTING, FINISHED}
 
 # properties
-var combat_order = []
-var current_state = CombatState.ACTIVE
-var current_phase = Phase.COMBAT
+var combatants = []
+var current_state = CombatState.INACTIVE
+var current_phase = Phase.PREP
 var current_turn = 0
 var round_tracker = Round.INACTIVE
 
 var mob_num_to_pos = {
-	0 : Vector2(640,353.256),
+	0 : Vector2(448,431.757),
 	1 : Vector2(448,243.354),
-	2 : Vector2(448,431.757),
+	2 : Vector2(640,353.256),
 	3 : Vector2(832,243.354),
 	4 : Vector2(832,431.757),
 }
@@ -72,45 +72,50 @@ func _ready():
 		# destroy any instances of "None" 
 		# TODO create a system where we can create as many monsters as we wish, not limited to 5
 		enemies.append(monster)
+	
+	if (combatants.is_empty()):
+		# populate combat order (probably a memory nightmare right here)
+		combatants = enemies.duplicate()
+		combatants.push_back(player)
+	
 	mobs.show()
+	await get_tree().process_frame
+	current_phase = Phase.COMBAT
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_pause"):
 		get_tree().paused = true
 		pause_menu.show()
 
-func _process(delta):
-	# TODO implement pause
-	if paused:
-		return
-		
-	if !hand.played:
-		return
-	
-	counter += delta
-	# evaluate combat state and turn order
-	# skip if not in combat or if actively resolving a round
-	if (current_state == CombatState.INACTIVE or round_tracker == Round.ACTIVE):
-		pass
-	# run round
-	elif (counter > 0):
-		combat_round()
-		counter = 0
+func _process(_delta):
+	if (
+		current_state == CombatState.INACTIVE and 
+		current_phase == Phase.COMBAT and 
+		!enemies.is_empty() and
+    hand.played
+	):
+		# introduce randomness to break ties
+		combatants.shuffle()
+		var combatant_counter : Array[int]
+		# evaluate current turn counters
+		for combatant in combatants:
+			combatant_counter.append(combatant.turn_counter)
+    
+		if combatant_counter.max() < 100:
+			# track counters through an array 
+			# iterate through the number of combatants, increment their counters with their speed
+			for combatant in combatants:
+				combatant.turn_counter += combatant.speed
+		else:
+			# evalutate turn of combatant
+			current_turn = combatant_counter.find(combatant_counter.max())
+			combatants[current_turn].turn_counter -= 100
+			combat_round()
 
 func combat_round():
-	round_tracker = Round.ACTIVE
-	
-	# fresh combat
-	if (combat_order.is_empty()):
-		# populate combat order (probably a memory nightmare right here)
-		combat_order = enemies.duplicate()
-		combat_order.push_back(player)
-		
-		# sort combat order
-		combat_order.sort_custom(func(a: BaseEntity, b: BaseEntity): return a.get_speed() > b.get_speed())
-	# perform turn
-	elif (current_state == CombatState.ACTIVE && !combat_order.is_empty()):
-		var current_actor: BaseEntity = combat_order[current_turn]
+	current_state = CombatState.ACTIVE
+	if (current_state == CombatState.ACTIVE && !enemies.is_empty()):
+		var current_actor: BaseEntity = combatants[current_turn]
 		
 		var source: BaseEntity = current_actor
 		var target: BaseEntity = player
@@ -121,24 +126,24 @@ func combat_round():
 			source = player
 			target = enemies[enemy_idx]
 		
-		# evaluate attack
+		# evaluate attack 
 		var attack_roll = await source.attempt_attack()
 		var damage = source.roll_dmg()
 		var attack_result = await target.evaluate_attack(attack_roll, damage)
 		if (attack_result):
-			#print(
-				#"%s hit %s for %s, %s at %s" % 
-				#[source.name, target.name, damage, target.name, target.health]
-			#)
 			if (target.health <= 0 && target == player):
 				# game over sequence
-				current_state = CombatState.INACTIVE
+				current_phase = Phase.FINISHED
 				player.kill()
+			
 			elif (target.health <= 0 && source == player):
-				# remove enemy from list
-				enemies.pop_at(enemy_idx)
-				combat_order.pop_at(combat_order.find(target))
-				target.kill()
+				# remove enemy from list if dead
+				enemies.pop_at(enemies.find(target))
+				combatants.pop_at(combatants.find(target))
+				if !enemies.is_empty():
+					target.kill()
+				else:
+					await target.kill()
 			
 			# check if all combatants have been defeated
 			if (enemies.is_empty()):
@@ -153,14 +158,13 @@ func combat_round():
 				current_phase = Phase.LOOTING
 				end_combat()
 		else:
-			print("Big miss from %s" % source)
-		# move To next
-		current_turn = (current_turn + 1) % combat_order.size()
-	round_tracker = Round.INACTIVE
+			# missed shot due to AC
+			#print("Big Miss from %s" % source)
+			pass
+	current_state = CombatState.INACTIVE
 
 func end_combat():
 	var loot_counter = 1
-	
 	for loot in $Loot.get_children():
 		if loot.name == "LootBacking":
 			if $Loot.get_child_count() == 1:
@@ -186,9 +190,12 @@ func end_looting():
 	delay_timer.wait_time = 0.5
 	delay_timer.start()
 	await delay_timer.timeout
-	# give deck to global
+	
+	# go back to overworld, increment overall level
 	Global.current_overworld_level += 1
-	# go back to overworld
+	if Global.current_overworld_level == 5:
+		Global.current_overworld_level = 0
+		Global.current_level_name = ""
 	get_tree().change_scene_to_file("res://scenes/Overworld.tscn")
 
 func hide_tooltip():
