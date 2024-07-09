@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4e86hgjbwird"]
+[gd_scene load_steps=9 format=3 uid="uid://b50voaremkd80"]
 
 [ext_resource type="Script" path="res://scripts/DeckManager.gd" id="1_5jxd7"]
 [ext_resource type="PackedScene" uid="uid://dwsljk6mc13qo" path="res://scenes/UI/PauseMenu.tscn" id="2_b11fc"]
@@ -65,7 +65,8 @@ layout_mode = 0
 offset_left = 8.0
 offset_right = 200.0
 offset_bottom = 304.0
-text = "Go get some cards you fucking freak."
+bbcode_enabled = true
+text = "Nothing to see here, try killing stuff."
 
 [node name="DeckDisplay" type="ColorRect" parent="."]
 layout_mode = 0

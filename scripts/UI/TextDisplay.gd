@@ -32,9 +32,9 @@ func display_loot(code):
 	# display WORN MAGIC ARCANE WEAPON for equipment
 	# display FINE RARE DEATH for card
 	textbox.text = (
-		"[color="+ Global.TIER_COLORS[Global.mods[code[2]]] +"]" + 
+		"[color=" + Global.TIER_COLORS[Global.mods[code[2]]] +"]" + 
 		Global.ITEM_RARITY[code[2]].capitalize() + "[/color] " + 
-		"[color="+ Global.TIER_COLORS[Global.mods[code[3]]] +"]" + 
+		"[color=" + Global.TIER_COLORS[Global.mods[code[3]]] +"]" + 
 		Global.ITEM_TIER[code[3]].capitalize() + "[/color] \n"
 	)
 	
