@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr5ywnck8vc32"
-path="res://.godot/imported/helm-leatherv1.png-f4f68e0b3a491d4d9b2d8ada787a369f.ctex"
+uid="uid://b7youjjmllyg3"
+path="res://.godot/imported/deck-hover.png-fd4143bc58bd7cd9963c742498704a87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bases_or_alts/helm-leatherv1.png"
-dest_files=["res://.godot/imported/helm-leatherv1.png-f4f68e0b3a491d4d9b2d8ada787a369f.ctex"]
+source_file="res://sprites/deck-hover.png"
+dest_files=["res://.godot/imported/deck-hover.png-fd4143bc58bd7cd9963c742498704a87.ctex"]
 
 [params]
 

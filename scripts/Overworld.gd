@@ -26,3 +26,6 @@ func _on_close_button_pressed():
 
 func _on_exit_button_pressed():
 	get_tree().quit()
+
+func _on_deck_manager_pressed():
+	get_tree().change_scene_to_file("res://scenes/DeckManager.tscn")

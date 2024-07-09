@@ -12,6 +12,8 @@ var speed
 var crit_chance
 var crit_damage
 
+var turn_counter = 0
+
 # Status
 var status: LifeStatus
 
@@ -36,7 +38,7 @@ func get_stats(entity_name, monster_tier = 0) -> void:
 	health = entity_stats["health"] * ( 1 + monster_tier)
 	armor_class = entity_stats["armor_class"] * ( 1 + monster_tier)
 	damage = entity_stats["damage"] * ( 1 + monster_tier)
-	speed = entity_stats["speed"] * ( 1 + monster_tier)
+	speed = entity_stats["speed"] * ( 1 + monster_tier/2)
 	crit_chance = entity_stats["crit_chance"] * ( 1 + monster_tier)
 	crit_damage = entity_stats["crit_damage"] * ( 1 + monster_tier)
 
@@ -48,6 +50,7 @@ func kill() -> void:
 	animation_player.play('BaseEntityAnims/death')
 	await animation_player.animation_finished
 	animation_player.play('BaseEntityAnims/ghost')
+	await animation_player.animation_finished
 
 func attempt_attack() -> int:
 	# Play Attack Animation

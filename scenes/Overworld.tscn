@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://duoq6fcewo54o"]
+[gd_scene load_steps=9 format=3 uid="uid://duoq6fcewo54o"]
 
 [ext_resource type="Script" path="res://scripts/Overworld.gd" id="1_lsmee"]
 [ext_resource type="PackedScene" uid="uid://g1f0r1ebadw" path="res://scenes/UI/TextDisplay.tscn" id="1_x8wxk"]
+[ext_resource type="Texture2D" uid="uid://d2cioayecqfr8" path="res://sprites/deck.png" id="3_4sj42"]
 [ext_resource type="PackedScene" uid="uid://chore4el6n68" path="res://scenes/Level.tscn" id="3_fp77y"]
 [ext_resource type="PackedScene" uid="uid://dwsljk6mc13qo" path="res://scenes/UI/PauseMenu.tscn" id="4_4yow4"]
+[ext_resource type="Texture2D" uid="uid://byivuws2x3nns" path="res://sprites/deck-pressed.png" id="4_i6g1f"]
+[ext_resource type="Texture2D" uid="uid://b7youjjmllyg3" path="res://sprites/deck-hover.png" id="4_j8ijm"]
 
 [sub_resource type="Theme" id="Theme_i1s4k"]
 default_font_size = 64
@@ -17,7 +20,22 @@ script = ExtResource("1_lsmee")
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
-color = Color(0.67904, 0.378467, 0.605407, 1)
+color = Color(0.407843, 0.415686, 0.74902, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 1.0
+offset_right = 959.0
+offset_bottom = 541.0
+color = Color(0.266667, 0.27451, 0.521569, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 736.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.168627, 0.14902, 0.305882, 1)
 
 [node name="Levels" type="Control" parent="."]
 anchors_preset = 0
@@ -25,17 +43,17 @@ anchors_preset = 0
 [node name="Level1" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 240.0
+offset_top = 224.0
 offset_right = 192.0
-offset_bottom = 304.0
+offset_bottom = 288.0
 enemies = Array[String](["Skele0", "Skele0", "Skele0"])
 
 [node name="Level2" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 288.0
-offset_top = 144.0
+offset_top = 128.0
 offset_right = 352.0
-offset_bottom = 208.0
+offset_bottom = 192.0
 enemies = Array[String](["Skele0", "Skele0", "Skele0", "Skele0", "Skele0"])
 prereqs = Array[String](["Level1"])
 overworld_level = 1
@@ -43,9 +61,9 @@ overworld_level = 1
 [node name="Level3" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 288.0
-offset_top = 336.0
+offset_top = 320.0
 offset_right = 352.0
-offset_bottom = 400.0
+offset_bottom = 384.0
 enemies = Array[String](["Skele0", "Skele1", "Skele1"])
 prereqs = Array[String](["Level1"])
 overworld_level = 1
@@ -53,9 +71,9 @@ overworld_level = 1
 [node name="Level4" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 48.0
+offset_top = 32.0
 offset_right = 512.0
-offset_bottom = 112.0
+offset_bottom = 96.0
 enemies = Array[String](["Skele1", "Skele2", "Skele2"])
 prereqs = Array[String](["Level2"])
 overworld_level = 2
@@ -63,9 +81,9 @@ overworld_level = 2
 [node name="Level5" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 240.0
+offset_top = 224.0
 offset_right = 512.0
-offset_bottom = 304.0
+offset_bottom = 288.0
 enemies = Array[String](["Skele3", "Skele3"])
 prereqs = Array[String](["Level2", "Level3"])
 overworld_level = 2
@@ -73,9 +91,9 @@ overworld_level = 2
 [node name="Level6" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 432.0
+offset_top = 416.0
 offset_right = 512.0
-offset_bottom = 496.0
+offset_bottom = 480.0
 enemies = Array[String](["Skele1", "Skele0", "Skele0", "Skele1", "Skele1"])
 prereqs = Array[String](["Level3"])
 overworld_level = 2
@@ -83,9 +101,9 @@ overworld_level = 2
 [node name="Level7" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 608.0
-offset_top = 144.0
+offset_top = 128.0
 offset_right = 672.0
-offset_bottom = 208.0
+offset_bottom = 192.0
 enemies = Array[String](["Skele1", "Skele1", "Skele1", "Skele2", "Skele3"])
 prereqs = Array[String](["Level4", "Level5"])
 overworld_level = 3
@@ -93,9 +111,9 @@ overworld_level = 3
 [node name="Level8" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 608.0
-offset_top = 336.0
+offset_top = 320.0
 offset_right = 672.0
-offset_bottom = 400.0
+offset_bottom = 384.0
 enemies = Array[String](["Skele2", "Skele4", "Skele4"])
 prereqs = Array[String](["Level5", "Level6"])
 overworld_level = 3
@@ -103,23 +121,23 @@ overworld_level = 3
 [node name="Level9" parent="Levels" instance=ExtResource("3_fp77y")]
 layout_mode = 0
 offset_left = 768.0
-offset_top = 240.0
+offset_top = 224.0
 offset_right = 832.0
-offset_bottom = 304.0
+offset_bottom = 288.0
 enemies = Array[String](["Skele4", "Skele2", "Skele2", "Skele4", "Skele4"])
 prereqs = Array[String](["Level7", "Level8"])
 overworld_level = 4
 
-[node name="DeckManager" type="Button" parent="."]
+[node name="DeckManager" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 380.0
-offset_right = 109.0
-offset_bottom = 508.0
-text = "Deck
-Manager
-
-"
+offset_top = 320.0
+offset_right = 48.0
+offset_bottom = 341.0
+scale = Vector2(10, 10)
+texture_normal = ExtResource("3_4sj42")
+texture_pressed = ExtResource("4_i6g1f")
+texture_hover = ExtResource("4_j8ijm")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -134,5 +152,7 @@ offset_top = 24.0
 offset_right = 366.0
 offset_bottom = 112.0
 theme = SubResource("Theme_i1s4k")
-theme_override_colors/font_color = Color(0.291285, 0.0746954, 0.28167, 1)
+theme_override_colors/font_color = Color(0.0545246, 0.0540523, 0.119671, 1)
 text = "Overworld"
+
+[connection signal="pressed" from="DeckManager" to="." method="_on_deck_manager_pressed"]

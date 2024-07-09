@@ -7,7 +7,6 @@ class_name Hand extends Node2D
 var arena
 var camera: ArenaCamera
 
-var played = false
 var deactivate
 
 var children
@@ -24,13 +23,31 @@ func _ready():
 	camera.center_hand()
 	hand = Global.draw(hand_size)
 	draw_hand()
+	
+	# empty hand, start battle
 	if hand.size() == 0:
 		finish_hand()
 
+func _input(event):
+	if arena.current_phase == Arena.Phase.PREP:
+		# skip card playing
+		if Input.is_action_just_pressed("ui_down"):
+			finish_hand()
+		# numbered inputs for card draw
+		elif Input.is_action_just_pressed("card_1") and hand.size() >= 1:
+			play_card(0, true)
+		elif Input.is_action_just_pressed("card_2") and hand.size() >= 2:
+			play_card(1, true)
+		elif Input.is_action_just_pressed("card_3") and hand.size() >= 3:
+			play_card(2, true)
+		elif Input.is_action_just_pressed("card_4") and hand.size() >= 4:
+			play_card(3, true)
+		elif Input.is_action_just_pressed("card_5") and hand.size() >= 5:
+			play_card(4, true)
+
 func draw_hand():
 	for idx in hand.size():
-		var card: Card = cardPrefab.instantiate()
-		card.code = hand[idx]
+		var card := Card.new_card(hand[idx])
 		card.idx = idx
 		add_child(card)
 	
@@ -51,10 +68,22 @@ func sort_card_distance() -> Array[Vector2]:
 		outlist.push_front(Vector2((card_idx + 1) * partition_size - variable_max_size / 2, 0))
 	return outlist
 
-func play_card(idx):
+func play_card(idx, manual=false):
+	var played_card = get_child(idx)
 	# TODO: Move if able to play more than one card
 	for card in children:
 		card.disabled = true
+	if manual:
+		played_card = get_child(get_child_count() - (idx + 1))
+	played_card.card_method()
+	played_card.animation_player.play("card_exit")
+	
+	await played_card.animation_player.animation_finished
+	played_card.queue_free()
+	await played_card.tree_exited
+	
+	reactivate()
+	
 	# remove card from hand
 	hand.pop_at(idx)
 	deactivate = true
@@ -109,12 +138,10 @@ func hover(new_idx):
 func finish_hand():
 	for card in children:
 		card.disabled = true
-	# Return what remains in hand to deck
-	camera.center_arena()
-	played = true
-	Global.return_to_deck(hand)
 	
-
-func _input(event):
-	if Input.is_action_just_pressed("ui_down"):
-		played = true
+	# bring camera center and start combat phase
+	camera.center_arena()
+	arena.end_prep()
+	
+	# Return what remains in hand to deck
+	Global.return_to_deck(hand)

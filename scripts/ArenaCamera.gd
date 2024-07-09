@@ -3,7 +3,6 @@ class_name ArenaCamera extends Camera2D
 var animation_player
 
 func _ready():
-	print("ready")
 	animation_player = $AnimationPlayer
 
 func center_arena():

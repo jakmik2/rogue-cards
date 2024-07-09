@@ -1,19 +1,17 @@
 class_name Player extends BaseEntity
 
-var deck : Array[String]
-var equipment_modifiers : Dictionary
+var deck : Array[Card] = []
 
 # placeholder/reminder for future use
 # TODO add equipment sprite to character
 # TODO add ability to add textures to the sprite??
 var equipment_sprite
-
+@onready var card_prefab = preload("res://scenes/Card.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# override BaseEntity values
 	get_stats("Player")
-	deck = Global.current_player_deck
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func attempt_attack() -> int:

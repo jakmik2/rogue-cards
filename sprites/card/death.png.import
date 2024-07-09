@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://24wkns3vvnbc"
-path="res://.godot/imported/helm-arcanev2.png-a8dd304a2e5f915daca1e530ec138db3.ctex"
+uid="uid://csnsk40i36xt"
+path="res://.godot/imported/death.png-bdde472153ca7d4db97a4a79c6eb5cbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bases_or_alts/helm-arcanev2.png"
-dest_files=["res://.godot/imported/helm-arcanev2.png-a8dd304a2e5f915daca1e530ec138db3.ctex"]
+source_file="res://sprites/card/death.png"
+dest_files=["res://.godot/imported/death.png-bdde472153ca7d4db97a4a79c6eb5cbd.ctex"]
 
 [params]
 
