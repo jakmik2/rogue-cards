@@ -13,7 +13,7 @@ var category_drop_rates = {
 	# 50/50 for equipment or card
 	EquipmentCategory.A: 0.1,	# new card
 	EquipmentCategory.B: 0.18,	# helm
-	EquipmentCategory.C: 0.22,	# torso
+	EquipmentCategory.C: 0.22,	# tunic
 	EquipmentCategory.D: 0.20,	# weapon
 	EquipmentCategory.E: 0.16,	# gloves
 	EquipmentCategory.F: 0.14,	# boots

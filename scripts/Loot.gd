@@ -4,7 +4,8 @@ var arena
 var player
 var equipment_pile
 
-@onready var text_template = "res://scenes/UI/"
+@onready var anim = $Animator
+
 
 # 4 letter code (designed for expansion) that determines type of loot
 var loot_code
@@ -67,6 +68,8 @@ func _on_mouse_click(_viewport, _event, _shape_idx):
 		if get_parent().get_child_count() == 2:
 			arena.current_phase = arena.Phase.FINISHED
 			arena.end_looting()
+		anim.play("pickup")
+		await anim.animation_finished
 		queue_free()
 
 func _on_mouse_entered():

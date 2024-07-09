@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbdir0v3h5wg4"]
 
 [ext_resource type="Script" path="res://scripts/EquipmentItem.gd" id="1_3j3ko"]
-[ext_resource type="Texture2D" uid="uid://dprii7ubrywqq" path="res://sprites/bases_or_alts/helm-metalv2.png" id="1_k3p0c"]
+[ext_resource type="Texture2D" uid="uid://dprii7ubrywqq" path="res://sprites/bases_or_alts/helm-metal.png" id="2_h6cox"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ptqg1"]
 radius = 18.0
@@ -12,7 +12,7 @@ script = ExtResource("1_3j3ko")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("1_k3p0c")
+texture = ExtResource("2_h6cox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ptqg1")

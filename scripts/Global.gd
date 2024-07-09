@@ -3,7 +3,7 @@ extends Node
 var EQUIPMENT_CATEGORY = {
 	"A" : "card",
 	"B" : "helm",
-	"C" : "torso",
+	"C" : "tunic",
 	"D" : "weapon",
 	"E" : "gloves",
 	"F" : "boots",
@@ -52,7 +52,7 @@ var BASE_STAT_INCREASE = {
 
 var EQUIPMENT_STATS = {
 	"helm" 		: ["health", "damage"],
-	"torso" 	: ["armor_class", "health"],
+	"tunic" 	: ["armor_class", "health"],
 	"weapon" 	: ["damage", "crit_chance"],
 	"gloves" 	: ["crit_chance", "speed"],
 	"boots" 	: ["speed", "armor_class"],
