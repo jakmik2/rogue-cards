@@ -1,7 +1,7 @@
 extends Control
 
 @onready var pause_menu = $UI/PauseMenu
-@onready var card_holder : GridContainer = $DeckDisplay/CardHolder
+@onready var card_holder : Control = $DeckDisplay/CardHolder
 
 
 # size determines how many pages
@@ -34,6 +34,14 @@ func stock_page() -> void:
 		if i+current_page*9 < len(Global.current_player_deck):
 			var card_dupe = Card.new_card(Global.current_player_deck[i+current_page*9])
 			card_holder.add_child(card_dupe)
+			match i:
+				0, 1, 2:
+					card_dupe.position = Vector2(96+i*200, 88)
+				3, 4, 5:
+					card_dupe.position = Vector2(96+(i-3)*200, 256)
+				6, 7, 8:
+					card_dupe.position = Vector2(96+(i-6)*200, 424)
+			print(card_dupe.position)
 		else:
 			return
 

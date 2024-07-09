@@ -1,4 +1,4 @@
-class_name Card extends Control
+class_name Card extends Area2D
 
 @onready var sprite = $Sprite
 @onready var outline = $Outline
@@ -16,7 +16,7 @@ var rarity
 var tier
 
 var pressed = false
-var pressed_offset = 0.5
+var pressed_offset = 8
 
 
 func _ready():
@@ -51,20 +51,27 @@ static func new_card(code: String) -> Card:
 	created_card.card_type = Global.CARD_TYPE[code[0]]
 	return created_card
 
-func _on_gui_input(event):
+func _on_input_event(viewport, event, shape_idx):
 	if Input.is_action_just_pressed("ui_select") and !pressed:
 		# fake press and release
 		pressed = true
 		position.y += pressed_offset
 		timer.start()
+		
 		# set description
-		text_box.text = description + "\n\n\n\n\n\n\n\n\n" + card_name
+		text_box.text = description
+		if card_type == "death":
+			text_box.text += "\n\n\n\n\n\n\n\n"
+		else:
+			text_box.text += "\n\n\n\n\n\n\n\n\n"
+		text_box.text += card_name
+		
 		await timer.timeout
 		position.y -= pressed_offset
 		pressed = false
 
-func _on_hover_enter():
+func _on_mouse_entered():
 	outline.show()
 
-func _on_hover_exit():
+func _on_mouse_exited():
 	outline.hide()

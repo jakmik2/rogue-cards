@@ -1,101 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc7rp7wxhjss0"]
+[gd_scene load_steps=4 format=3 uid="uid://dc7rp7wxhjss0"]
 
 [ext_resource type="Script" path="res://scripts/Loot.gd" id="1_58na1"]
-[ext_resource type="Texture2D" uid="uid://qmqv8oa80hk4" path="res://sprites/card/equipment.png" id="2_qux11"]
+[ext_resource type="Texture2D" uid="uid://i2qrdraonycb" path="res://sprites/card/blank.png" id="2_qjk00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8idy1"]
 size = Vector2(140, 160)
-
-[sub_resource type="Animation" id="Animation_163l8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_7q74r"]
-resource_name = "pickup"
-length = 0.333337
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -81), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.233333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(10, 10), Vector2(-10, 10), Vector2(10, 10)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rm4rg"]
-_data = {
-"RESET": SubResource("Animation_163l8"),
-"pickup": SubResource("Animation_7q74r")
-}
 
 [node name="Loot" type="Area2D"]
 script = ExtResource("1_58na1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(10, 10)
-texture = ExtResource("2_qux11")
+texture = ExtResource("2_qjk00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-scale = Vector2(0.998879, 1)
 shape = SubResource("RectangleShape2D_8idy1")
-
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_rm4rg")
-}
 
 [connection signal="input_event" from="." to="." method="_on_mouse_click"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

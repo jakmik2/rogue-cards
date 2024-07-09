@@ -1,32 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6lwndeghysv5"]
+[gd_scene load_steps=8 format=3 uid="uid://c6lwndeghysv5"]
 
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_b0rvh"]
-[ext_resource type="Texture2D" uid="uid://i2qrdraonycb" path="res://sprites/card/blank.png" id="2_ldklw"]
-[ext_resource type="Texture2D" uid="uid://dpwufntmr1227" path="res://sprites/card/card-outline.png" id="3_c1hr8"]
+[ext_resource type="Texture2D" uid="uid://i2qrdraonycb" path="res://sprites/card/blank.png" id="2_62rrj"]
+[ext_resource type="Texture2D" uid="uid://dpwufntmr1227" path="res://sprites/card/card-outline.png" id="3_y2dhh"]
 
-[node name="Card" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 16.0
-offset_bottom = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kitm"]
+size = Vector2(11, 13)
+
+[sub_resource type="Animation" id="Animation_87yg7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y7g1i"]
+resource_name = "card_exit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.08165e-12, -20), Vector2(2.08165e-12, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fngp"]
+_data = {
+"RESET": SubResource("Animation_87yg7"),
+"card_exit": SubResource("Animation_y7g1i")
+}
+
+[node name="Card" type="Area2D"]
 scale = Vector2(10, 10)
 script = ExtResource("1_b0rvh")
 
-[node name="Sprite" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
-texture = ExtResource("2_ldklw")
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_62rrj")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2kitm")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0fngp")
+}
 
 [node name="Outline" type="TextureRect" parent="."]
 visible = false
-layout_mode = 0
-offset_left = -0.1
-offset_top = -1.1
-offset_right = 15.9
-offset_bottom = 16.9
-texture = ExtResource("3_c1hr8")
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 9.0
+mouse_filter = 2
+texture = ExtResource("3_y2dhh")
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="mouse_entered" from="." to="." method="_on_hover_enter"]
-[connection signal="mouse_exited" from="." to="." method="_on_hover_exit"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
